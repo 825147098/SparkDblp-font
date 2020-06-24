@@ -8,7 +8,17 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children:[
+      {
+        path:'/Home/combined',
+        component:() => import('../views/children/combined.vue'),
+      },
+      {
+        path:'/Home/author',
+        component:() => import('../views/children/author.vue')
+      }
+    ]
   },
   {
     path: '/about',
