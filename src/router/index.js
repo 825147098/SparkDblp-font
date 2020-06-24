@@ -12,11 +12,18 @@ Vue.use(VueRouter)
     children:[
       {
         path:'/Home/combined',
+        name:'combined',
         component:() => import('../views/children/combined.vue'),
       },
       {
         path:'/Home/author',
+        name:'author',
         component:() => import('../views/children/author.vue')
+      },
+      {
+        path:'/Home/publiaction',
+        name:'publiaction',
+        component:() => import('../views/children/publiaction.vue')
       }
     ]
   },

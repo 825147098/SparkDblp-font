@@ -2,11 +2,14 @@
     <el-container>
         <el-header height="60px" class="homeBar">
             <el-menu mode="horizontal" background-color="#545c64" text-color="#fff">
-                <el-submenu index="homeMenue">
-                    <template slot="title">主页</template>
-                    <el-menu-item index="homeBlog">博客</el-menu-item>
-                    <el-menu-item index="homeStatistics">统计</el-menu-item>
-                </el-submenu>
+                <!--<el-submenu index="homeMenue">-->
+                    <!--<template slot="title">主页</template>-->
+                    <!--<el-menu-item index="homeBlog">博客</el-menu-item>-->
+                    <!--<el-menu-item index="homeStatistics">统计</el-menu-item>-->
+                <!--</el-submenu>-->
+                <el-menu-item index="Home" @click="redo">
+                    <el-link href="localhost:8080/Home">主页</el-link>
+                </el-menu-item>
                 <el-submenu index="browse">
                     <template slot="title">浏览</template>
                     <el-menu-item index="browsePerson">作者</el-menu-item>
@@ -30,8 +33,9 @@
                     <el-menu-item index="aboutPrivacy">隐私</el-menu-item>
                     <!--//数据隐私政策-->
                 </el-submenu>
-                <el-menu-item style="width: 400px; float: right">
-                    <el-input size="mini" v-model="searchInput" style="width: 100%; " @keyup.enter="searchJson"></el-input>
+                <el-menu-item style="width: 400px; float: right"  @keyup.enter="searchJson">
+                    <el-input size="mini" v-model="searchInput" style="width: 100%; "
+                              @keyup.enter.native="searchJson"></el-input>
                 </el-menu-item>
                 <el-menu-item style="float: right">
                     <el-submenu>
@@ -40,26 +44,26 @@
                         </template>
                         <el-radio-group v-model="myRadioChose" style="margin-left: 10px">
                             <div>
-                                <el-radio :label="0" style="color: white">组合搜素</el-radio>
+                                <el-radio :label="0" style="color: white" @click="searchJson">组合搜素</el-radio>
                             </div>
                             <div>
                                 <el-radio :label="1" style="color: white">作者搜索</el-radio>
                             </div>
                             <!--<div>-->
-                                <!--<el-radio :label="2" style="color: white">地点搜索</el-radio>-->
+                            <!--<el-radio :label="2" style="color: white">地点搜索</el-radio>-->
                             <!--</div>-->
                             <div>
                                 <el-radio :label="3" style="color: white">出版物搜索</el-radio>
                             </div>
-                            <div>
-                                <el-radio :label="4" style="color: white">全文搜索</el-radio>
-                            </div>
+                            <!--<div>-->
+                            <!--<el-radio :label="4" style="color: white">全文搜索</el-radio>-->
+                            <!--</div>-->
                         </el-radio-group>
                     </el-submenu>
                 </el-menu-item>
             </el-menu>
         </el-header>
-        <el-container >
+        <el-container>
             <el-aside width="400px" style="padding: 20px" v-if="flag">
                 <el-tabs type="border-card">
                     <el-tab-pane>
@@ -79,21 +83,28 @@
                         </div>
                     </el-tab-pane>
                     <!--<el-tab-pane :disabled=flag>-->
-                        <!--<span slot="label">作者划分</span>-->
+                    <!--<span slot="label">作者划分</span>-->
                     <!--</el-tab-pane>-->
                     <!--<el-tab-pane :disabled=flag>-->
-                        <!--<span slot="label">学科划分</span>-->
+                    <!--<span slot="label">学科划分</span>-->
                     <!--</el-tab-pane>-->
                     <!--<el-tab-pane :disabled=flag>-->
-                        <!--<span slot="label">类型划分</span>-->
+                    <!--<span slot="label">类型划分</span>-->
                     <!--</el-tab-pane>-->
                     <!--<el-tab-pane :disabled=flag>-->
-                        <!--<span slot="label">年份划分</span>-->
+                    <!--<span slot="label">年份划分</span>-->
                     <!--</el-tab-pane>-->
                 </el-tabs>
             </el-aside>
-            <Combined v-if="flag"></Combined>
-            <author v-else></author>
+            <el-main v-if="flag">
+                <el-image
+                        src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2420980653,1880035631&fm=26&gp=0.jpg"
+                        fit="scale-down" style="width: 1000px;height: 660px"></el-image>
+            </el-main>
+            <Combined v-if="conbined" :text = "searchInput"></Combined>
+            <author v-if="author" :text = "searchInput"></author>
+            <publiaction v-if="publish" :text = "searchInput"></publiaction>
+            <!--<router-view></router-view>-->
         </el-container>
     </el-container>
 </template>
@@ -104,22 +115,56 @@
 
     import Combined from "./children/combined";
     import Author from "./children/author"
+    import Publiaction from "./children/publiaction";
+
     export default {
         name: 'Home',
-        components: {Author, Combined},
+        components: {Publiaction, Author, Combined},
+        // components:{},
         data() {
             return {
                 myRadioChose: 0,
                 searchInput: "",
-                flag: false,
+                flag: true,
+                author: false,
+                conbined: false,
+                publish: false,
 
 
             }
         },
+        // props:['text'],
         methods: {
-            searchJson(){
-                switch (this.myRadioChose) {
+            redo(){
+                this.flag = true;
+                this.author = false;
+                this.publish = false;
+                this.conbined = false;
+            },
 
+            searchJson() {
+                switch (this.myRadioChose) {
+                    case 0:
+                        // console.log(this.myRadioChose);
+                        // console.log(this.searchInput);
+                        this.flag = false;
+                        this.author = false;
+                        this.publish = false;
+                        this.conbined = true;
+                        // this.$router.push(({path:'/conbined',query:{text:this.searchInput}}));
+                        break;
+                    case 1:
+                        this.flag = false;
+                        this.author = false;
+                        this.publish = false;
+                        this.conbined = false;
+                        break;
+                    case 3:
+                        this.flag = false;
+                        this.author = false;
+                        this.publish = true;
+                        this.conbined = false;
+                        break
                 }
             }
         },

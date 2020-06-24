@@ -65,6 +65,7 @@
 </template>
 
 <script>
+    // import axios from 'axios';
     export default {
         name: "combined",
         data() {
@@ -208,6 +209,8 @@
 
             }
         },
+
+        props:['text'],
         methods: {
             group_signal(data, key) {
                 return data.reduce(function (prev, cur) {
@@ -263,8 +266,21 @@
             //     this.sortType = this.group_signal(this.articleData, "_publtype");
             //     console.log(this.sortType);
             // },
+
+            // getData(){
+            //     axios.get("",{
+            //         params:{
+            //             label:0,
+            //             msg:this.text
+            //         }
+            //     }).then(res =>{
+            //
+            //     })
+            // }
         },
         mounted() {
+            // this.text = this.$router.query.text;
+            console.log(this.text);
             this.sortYear();
             this.groupBy();
             this.groupByAuthor();
