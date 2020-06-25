@@ -101,9 +101,10 @@
                         src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2420980653,1880035631&fm=26&gp=0.jpg"
                         fit="scale-down" style="width: 1000px;height: 660px"></el-image>
             </el-main>
-            <Combined v-if="conbined" :text = "searchInput"></Combined>
-            <author v-if="author" :text = "searchInput"></author>
-            <publiaction v-if="publish" :text = "searchInput"></publiaction>
+            <Combined v-if="conbined" :text = "searchInput" @searchAuthor="searchAuthor"></Combined>
+            <author v-if="author" :text = "authorName" @searchAuthor="searchAuthor" ></author>
+            <publiaction v-if="publish" :text = "searchInput" @searchAuthor="searchAuthor"></publiaction>
+            <searchAut @searchAuthor="searchAuthor" v-if="searchAut"></searchAut>
             <!--<router-view></router-view>-->
         </el-container>
     </el-container>
@@ -116,21 +117,23 @@
     import Combined from "./children/combined";
     import Author from "./children/author"
     import Publiaction from "./children/publiaction";
+    import SearchAut from "./children/searchAut";
 
     export default {
         name: 'Home',
-        components: {Publiaction, Author, Combined},
+        components: {SearchAut, Publiaction, Author, Combined},
         // components:{},
         data() {
             return {
                 myRadioChose: 0,
                 searchInput: "",
-                flag: true,
+                flag: false,
                 author: false,
                 conbined: false,
                 publish: false,
+                searchAut:false,
 
-
+                authorName:'',
             }
         },
         // props:['text'],
@@ -140,6 +143,17 @@
                 this.author = false;
                 this.publish = false;
                 this.conbined = false;
+                this.searchAut=false;
+            },
+
+            searchAuthor(authorName){
+                this.authorName = authorName;
+                this.flag = false;
+                this.author = true;
+                this.publish = false;
+                this.conbined = false;
+                this.searchAut=false;
+                console.log(authorName);
             },
 
             searchJson() {
@@ -151,6 +165,7 @@
                         this.author = false;
                         this.publish = false;
                         this.conbined = true;
+                        this.searchAut=false;
                         // this.$router.push(({path:'/conbined',query:{text:this.searchInput}}));
                         break;
                     case 1:
@@ -158,12 +173,14 @@
                         this.author = false;
                         this.publish = false;
                         this.conbined = false;
+                        this.searchAut=true;
                         break;
                     case 3:
                         this.flag = false;
                         this.author = false;
                         this.publish = true;
                         this.conbined = false;
+                        this.searchAut=false;
                         break
                 }
             }

@@ -24,6 +24,11 @@ Vue.use(VueRouter)
         path:'/Home/publiaction',
         name:'publiaction',
         component:() => import('../views/children/publiaction.vue')
+      },
+      {
+        path:'/Home/searchAut',
+        name:'searchAut',
+        component:() => import('../views/children/searchAut.vue')
       }
     ]
   },

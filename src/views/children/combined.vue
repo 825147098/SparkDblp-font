@@ -8,13 +8,15 @@
                 <el-tabs type="border-card">
                     <el-tab-pane :disabled=flag>
                         <span slot="label">作者划分</span>
-                        <div style="font-size: 13px" v-for="item in autList" :key="item">
-                            {{item}}({{sortAuthor[item].length}})
+                        <div style="font-size: 13px" v-for="item in autList" :key="item" class="divider">
+                            <el-button type="text" @click="searchAuthor(item)" size="small"  >
+                                {{item}}({{sortAuthor[item].length}})
+                            </el-button>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane :disabled=flag>
                         <span slot="label">Veneu划分</span>
-                        <div style="font-size: 13px" v-for="item in venList" :key="item">
+                        <div style="font-size: 13px; " v-for="item in venList" :key="item">
                             {{item}}({{sortVen[item].length}})
                         </div>
                     </el-tab-pane>
@@ -277,6 +279,11 @@
             //
             //     })
             // }
+
+            searchAuthor(authorName) {
+                console.log(authorName);
+                this.$emit("searchAuthor", authorName);
+            }
         },
         mounted() {
             // this.text = this.$router.query.text;
@@ -304,5 +311,8 @@
         color: #ffffff;
         padding: 4px 24px;
         margin: 2ex 0em;
+    }
+    .divider{
+        border-bottom: 1px whitesmoke solid;
     }
 </style>
