@@ -40,6 +40,7 @@
 <script>
 
     import axios from 'axios';
+
     export default {
         name: "searchAut",
 
@@ -48,21 +49,16 @@
                 authorName: "",
                 authList: [
                     {
-                        _VALUE: "Ai-Guo OuYang",
-                        _orcid: '',
+                        _VALUE: "空白数据",
+                        _orcid: "",
                         _aux: "",
-                    },
-                    {
-                        "_VALUE": "Oliver Kohlbacher",
-                        "_orcid": "0000-0003-1739-4598",
-                        "_aux": "",
                     },
                 ],
                 lucklyList: [],
             }
         },
 
-        props:['text'],
+        props: ['text'],
         methods: {
 
             searchAuthor(name) {
@@ -84,7 +80,7 @@
             },
 
             more() {
-                let list = [];
+              /*  let list = [];
                 for (let i = 0; i < 30; i++) {
                     let num = Math.random() * 2;
                     num = Math.floor(num);
@@ -93,33 +89,34 @@
                         _orcid: this.authList[num]._orcid,
                         _aux: this.authList[num]._aux
                     });
-                }
-                this.authList = list;
+                }*/
+                // this.authList = list;
                 if (this.authList.length >= 20) {
                     this.getLuckly();
                 }
                 // console.log(this.authList);
             },
 
-            getData(){
-                    axios.get("http://localhost:8080/authors/search",{
-                        params:{
-                            _VALUE:this.text
-                        }
-                    }).then(res =>{
-                        this.authList = res;
-                        this.more();
-                    }).catch(error =>{
-                        console.log(error);
-                    })
-                }
+            getData() {
+                axios.get("http://localhost:8080/authors/search", {
+                    params: {
+                        _VALUE: this.text
+                    }
+                }).then(res => {
+                    console.log(res.data)
+                    this.authList = res.data;
+                    this.more();
+                }).catch(error => {
+                    console.log(error);
+                })
+            }
 
         },
 
         mounted() {
-            // this.getData();
+            this.getData();
             this.more();
-            //console.log(this.authList);
+            console.log(this.authList);
         }
     }
 </script>
