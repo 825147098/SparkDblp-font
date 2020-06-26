@@ -9,7 +9,7 @@
             </header>
             <ul class="pub-list" v-if="lucklyList.length > 0">
                 <p>幸运匹配</p>
-                <li v-for="luckly in lucklyList" :key="luckly">
+                <li v-for="luckly in lucklyList" :key="luckly._VALUE">
                     <el-button type="text" @click="searchAuthor(luckly._VALUE)" size="mini">
                         {{luckly._VALUE}}
                         <el-tooltip class="item" effect="dark" :content=luckly._orcid placement="bottom-end"
@@ -22,7 +22,7 @@
             </ul>
             <ul class="pub-list">
                 <p>所有{{authList.length}}条匹配</p>
-                <li v-for="item in authList" :key="item">
+                <li v-for="item in authList" :key="item._VALUE">
                     <el-button type="text" @click="searchAuthor(item._VALUE)" size="mini">
                         {{item._VALUE}}
                         <el-tooltip class="item" effect="dark" :content=item._orcid placement="bottom-end"

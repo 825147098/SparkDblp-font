@@ -6,11 +6,11 @@
         <el-container>
             <el-aside width="400px" style="padding: 20px">
                 <el-tabs type="border-card">
-                    <el-tab-pane :disabled=flag>
+                    <el-tab-pane >
                         <span slot="label">作者划分</span>
-                        <div style="font-size: 13px" v-for="item in autList" :key="item" class="divider">
+                        <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
                             <el-button type="text" @click="searchAuthor(item)" size="small">
-                                {{item}}({{sortAuthor[item].length}})
+                                {{aut}}({{sortAuthor[aut].length}})
                             </el-button>
                         </div>
                     </el-tab-pane>
@@ -23,10 +23,10 @@
                     <!--<el-tab-pane :disabled=flag>-->
                     <!--<span slot="label">类型划分</span>-->
                     <!--</el-tab-pane>-->
-                    <el-tab-pane :disabled=flag>
+                    <el-tab-pane >
                         <span slot="label">年份划分</span>
-                        <div style="font-size: 13px" v-for="item in nowYear" :key="item">
-                            {{item}}({{sortData[item].length}})
+                        <div style="font-size: 13px" v-for="years in nowYear" :key="years">
+                            {{years}}({{sortData[years].length}})
                         </div>
                     </el-tab-pane>
                 </el-tabs>
@@ -36,16 +36,16 @@
                     <h2>Publication search results</h2>
                 </header>
                 <el-col>
-                    <ul class="pub-list" v-for="year in nowYear " :key="year">
+                    <ul class="pub-list" v-for="year in nowYear " :key="year._VALUE">
                         <li>{{year}}</li>
                         <br>
-                        <li v-for="item in sortData[year]" :key="item"
+                        <li v-for="item in sortData[year]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
                             <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false">
                                 <el-button circle icon="el-icon-document" size="mini"></el-button>
                             </el-link>
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
-                    <span v-for="authors in item.author" :key="authors">
+                    <span v-for="authors in item.author" :key="authors._VALUE">
                             {{authors._VALUE}}
                             <el-tooltip class="item" effect="dark" :content=authors._orcid placement="bottom-end"
                                         v-if="authors._orcid != null">
@@ -310,12 +310,11 @@
 
         },
         mounted() {
-            // this.sortYear();
-            // this.groupBy();
-            // this.groupByAuthor();
-            // this.groupByType();
-            // this.groupByVen();
-            this.getData();
+            this.sortYear();
+            this.groupBy();
+            this.groupByAuthor();
+            this.groupByVen();
+            // this.getData();
         }
     }
 </script>

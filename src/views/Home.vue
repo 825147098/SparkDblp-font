@@ -33,9 +33,9 @@
                     <el-menu-item index="aboutPrivacy">隐私</el-menu-item>
                     <!--//数据隐私政策-->
                 </el-submenu>
-                <el-menu-item style="width: 400px; float: right"  @keyup.enter="searchJson">
-                    <el-input size="mini" v-model="searchInput" style="width: 100%; "
-                              @keyup.enter.native="searchJson"></el-input>
+                <el-menu-item style="width: 400px; float: right">
+                    <el-input size="mini" v-model="searchInput" style="width: 100%; " clearable
+                              @keyup.enter.native="searchJson" @change="change"></el-input>
                 </el-menu-item>
                 <el-menu-item style="float: right">
                     <el-submenu index="searchLabel">
@@ -82,18 +82,6 @@
                             <span>例如:graph|network</span>
                         </div>
                     </el-tab-pane>
-                    <!--<el-tab-pane :disabled=flag>-->
-                    <!--<span slot="label">作者划分</span>-->
-                    <!--</el-tab-pane>-->
-                    <!--<el-tab-pane :disabled=flag>-->
-                    <!--<span slot="label">学科划分</span>-->
-                    <!--</el-tab-pane>-->
-                    <!--<el-tab-pane :disabled=flag>-->
-                    <!--<span slot="label">类型划分</span>-->
-                    <!--</el-tab-pane>-->
-                    <!--<el-tab-pane :disabled=flag>-->
-                    <!--<span slot="label">年份划分</span>-->
-                    <!--</el-tab-pane>-->
                 </el-tabs>
             </el-aside>
             <el-main v-if="flag">
@@ -160,13 +148,12 @@
                 switch (this.myRadioChose) {
                     case 0:
                         // console.log(this.myRadioChose);
-                        // console.log(this.searchInput);
+                        console.log(this.searchInput);
                         this.flag = false;
                         this.author = false;
                         this.publish = false;
                         this.conbined = true;
                         this.searchAut=false;
-                        // this.$router.push(({path:'/conbined',query:{text:this.searchInput}}));
                         break;
                     case 1:
                         this.flag = false;
@@ -182,6 +169,32 @@
                         this.conbined = false;
                         this.searchAut=false;
                         break
+                }
+            },
+
+            change(){
+                // this.redo();
+                // this.searchJson();
+                switch (this.myRadioChose) {
+                    case 0:
+                        this.conbined = false;
+                        setTimeout(() =>{
+                            this.conbined = true;
+                            this.$forceUpdate();
+                        });
+                        break;
+                    case 1:
+                        this.searchAut = false;
+                        setTimeout(() =>{
+                            this.searchAut = true;
+                        });
+                        break;
+                    case 3:
+                        this.publish = false;
+                        setTimeout(() =>{
+                            this.publish = true;
+                        });
+                        break;
                 }
             }
         },
