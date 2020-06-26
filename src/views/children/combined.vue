@@ -213,6 +213,13 @@
             }
         },
 
+        watch:{
+            text: function () {
+                console.log(this.text);
+                this.getData();
+            }
+        },
+
         props:['text'],
         methods: {
             group_signal(data, key) {

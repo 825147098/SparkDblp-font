@@ -177,23 +177,23 @@
                 // this.searchJson();
                 switch (this.myRadioChose) {
                     case 0:
-                        this.conbined = false;
-                        setTimeout(() =>{
-                            this.conbined = true;
-                            this.$forceUpdate();
-                        });
+                        // this.conbined = false;
+                        // setTimeout(() =>{
+                        //     this.conbined = true;
+                        //     this.$forceUpdate();
+                        // });
                         break;
                     case 1:
-                        this.searchAut = false;
-                        setTimeout(() =>{
-                            this.searchAut = true;
-                        });
+                        // this.searchAut = false;
+                        // setTimeout(() =>{
+                        //     this.searchAut = true;
+                        // });
                         break;
                     case 3:
-                        this.publish = false;
-                        setTimeout(() =>{
-                            this.publish = true;
-                        });
+                        // this.publish = false;
+                        // setTimeout(() =>{
+                        //     this.publish = true;
+                        // });
                         break;
                 }
             }

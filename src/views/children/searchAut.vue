@@ -113,6 +113,13 @@
 
         },
 
+        watch:{
+            text: function () {
+                console.log(this.text);
+                this.getData();
+            }
+        },
+
         mounted() {
             this.getData();
             this.more();
