@@ -8,16 +8,16 @@
                 <el-tabs type="border-card">
                     <el-tab-pane :disabled=flag>
                         <span slot="label">合作者划分</span>
-                        <div style="font-size: 13px" v-for="item in autList" :key="item" class="divider">
+                        <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
                             <el-button type="text" @click="searchAuthor(item)" size="small">
-                                {{item}}({{sortAuthor[item].length}})
+                                {{aut}}({{sortAuthor[aut].length}})
                             </el-button>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane :disabled=flag>
                         <span slot="label">Veneu划分</span>
-                        <div style="font-size: 13px" v-for="item in venList" :key="item">
-                            {{item}}({{sortVen[item].length}})
+                        <div style="font-size: 13px" v-for="ven in venList" :key="ven">
+                            {{ven}}({{sortVen[ven].length}})
                         </div>
                     </el-tab-pane>
                     <!--<el-tab-pane :disabled=flag>-->
@@ -263,12 +263,12 @@
 
         mounted() {
             console.log(this.text);
-            // this.sortYear();
-            // this.groupBy();
-            // this.groupByAuthor();
+            this.sortYear();
+            this.groupBy();
+            this.groupByAuthor();
             // this.groupByType();
-            // this.groupByVen();
-            this.getData();
+            this.groupByVen();
+            // this.getData();
         }
     }
 </script>

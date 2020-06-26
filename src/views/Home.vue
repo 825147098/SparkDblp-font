@@ -38,7 +38,7 @@
                               @keyup.enter.native="searchJson"></el-input>
                 </el-menu-item>
                 <el-menu-item style="float: right">
-                    <el-submenu>
+                    <el-submenu index="searchLabel">
                         <template slot="title">
                             <i class="el-icon-search"></i>
                         </template>

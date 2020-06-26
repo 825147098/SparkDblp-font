@@ -9,11 +9,11 @@
             </header>
             <ul class="pub-list" v-if="lucklyList.length > 0">
                 <p>幸运匹配</p>
-                <li v-for="item in lucklyList" :key="item">
-                    <el-button type="text" @click="searchAuthor(item._VALUE)" size="mini">
-                        {{item._VALUE}}
-                        <el-tooltip class="item" effect="dark" :content=item._orcid placement="bottom-end"
-                                    v-if="item._orcid != null">
+                <li v-for="luckly in lucklyList" :key="luckly">
+                    <el-button type="text" @click="searchAuthor(luckly._VALUE)" size="mini">
+                        {{luckly._VALUE}}
+                        <el-tooltip class="item" effect="dark" :content=luckly._orcid placement="bottom-end"
+                                    v-if="luckly._orcid != null">
                             <el-image src="https://dblp2.uni-trier.de/img/orcid-mark.12x12.png"
                                       style="padding-left:0.25em;" alt=""></el-image>
                         </el-tooltip>
@@ -110,15 +110,15 @@
                         this.authList = res;
                         this.more();
                     }).catch(error =>{
-                        console.log("error");
+                        console.log(error);
                     })
                 }
 
         },
 
         mounted() {
-            this.getData();
-            // this.more();
+            // this.getData();
+            this.more();
             //console.log(this.authList);
         }
     }
