@@ -69,17 +69,23 @@
                     <el-tab-pane>
                         <span slot="label">搜索规则</span>
                         <div style="font-size: 13px">
-                            <span>不区分大小写的前缀搜索：默认值，</span><br>
-                            <span>例如:sig匹配“ SIGIR”和“ signal”</span>
+                            <span>Title允许使用一个字符串作为输。例如:</span><br>
+                            <span style="margin-left: 10%">title:bigdata title中含有bigdata字符串的论文</span><br>
+                            <span style="margin-left: 10%">注意：</span><br>
+                            <span style="margin-left: 10%">1）title大小写不敏感，这意味着输入BigData也会返回bigdata的数据</span>
                             <el-divider></el-divider>
-                            <span>精确的词搜索：在词后附加美元符号（$）</span><br>
-                            <span>例如:graph $匹配“ graph”，但不匹配“ graphics”</span>
+                            <span>Year允许输入一个整形数字，或者整形数字的Range。例如：</span><br>
+                            <span style="margin-left: 10%">year:2019 查询2019的论文</span><br>
+                            <span style="margin-left: 10%">year:2010..2020 查询2010到2020的论文</span><br>
                             <el-divider></el-divider>
-                            <span>布尔和：按空格分隔单词，</span><br>
-                            <span>例如:codd &nbsp; model</span>
+                            <span>Author允许输入字符串或者字符串集合。例如:</span><br>
+                            <span style="margin-left: 10%">author: Yang 查询含有作者姓名含有Yang的论文</span><br>
+                            <span style="margin-left: 10%">author: Yang,mike 查询作者姓名的含有Yang或者mike的论文</span><br>
+                            <span style="margin-left: 10%">注意：</span><br>
+                            <span style="margin-left: 10%">1）作者姓名只允许精确匹配，这意味着当输入为Yan的时候，不会显示作者包含Yang的论文。</span><br>
+                            <span style="margin-left: 10%">2）作者姓名大小写敏感，这意味着当输入为yan的时候，不会显示作者包含Yan的论文。</span>
                             <el-divider></el-divider>
-                            <span>布尔值或：用竖线符号（|）连接单词，</span><br>
-                            <span>例如:graph|network</span>
+                            <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
                         </div>
                     </el-tab-pane>
                 </el-tabs>
