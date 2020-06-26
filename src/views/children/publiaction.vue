@@ -229,6 +229,13 @@
 
         props:['text'],
 
+        watch:{
+            text: function () {
+                console.log(this.text);
+                this.getData();
+            }
+        },
+
         methods: {
             group_signal(data, key) {
                 return data.reduce(function (prev, cur) {
