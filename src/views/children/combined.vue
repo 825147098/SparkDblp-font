@@ -220,6 +220,7 @@
         watch: {
             text: function () {
                 console.log(this.text);
+                this.text_split();
                 this.getData();
             }
         },
