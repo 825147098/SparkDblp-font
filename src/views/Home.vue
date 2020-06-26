@@ -104,7 +104,7 @@
             <Combined v-if="conbined" :text = "searchInput" @searchAuthor="searchAuthor"></Combined>
             <author v-if="author" :text = "authorName" @searchAuthor="searchAuthor" ></author>
             <publiaction v-if="publish" :text = "searchInput" @searchAuthor="searchAuthor"></publiaction>
-            <searchAut @searchAuthor="searchAuthor" v-if="searchAut"></searchAut>
+            <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text = "searchInput"></searchAut>
             <!--<router-view></router-view>-->
         </el-container>
     </el-container>
@@ -127,7 +127,7 @@
             return {
                 myRadioChose: 0,
                 searchInput: "",
-                flag: false,
+                flag: true,
                 author: false,
                 conbined: false,
                 publish: false,
@@ -185,6 +185,10 @@
                 }
             }
         },
+
+        mounted() {
+            this.redo();
+        }
     }
 </script>
 <style scoped>

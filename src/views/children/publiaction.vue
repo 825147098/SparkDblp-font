@@ -73,6 +73,8 @@
 </template>
 
 <script>
+
+    import axios from 'axios';
     export default {
         name: "publiaction",
         data() {
@@ -286,14 +288,34 @@
             searchAuthor(authorName) {
                 console.log(authorName);
                 this.$emit("searchAuthor", authorName);
-            }
+            },
+
+            getData(){
+                    axios.get("",{
+                        params:{
+                            msg:this.text
+                        }
+                    }).then(res =>{
+                        this.publishData =res;
+                        this.sortYear();
+                        this.groupBy();
+                        this.groupByAuthor();
+                        //this.groupByType();
+                        this.groupByVen();
+                    }).catch(error =>{
+                        console.log(error);
+                    })
+                }
+
+
         },
         mounted() {
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
+            // this.sortYear();
+            // this.groupBy();
+            // this.groupByAuthor();
             // this.groupByType();
             // this.groupByVen();
+            this.getData();
         }
     }
 </script>

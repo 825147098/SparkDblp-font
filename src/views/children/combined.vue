@@ -67,7 +67,7 @@
 </template>
 
 <script>
-    // import axios from 'axios';
+    import axios from 'axios';
     export default {
         name: "combined",
         data() {
@@ -269,16 +269,22 @@
             //     console.log(this.sortType);
             // },
 
-            // getData(){
-            //     axios.get("",{
-            //         params:{
-            //             label:0,
-            //             msg:this.text
-            //         }
-            //     }).then(res =>{
-            //
-            //     })
-            // }
+
+            getData(){
+                axios.get("",{
+                    params:{
+                        label:0,
+                        msg:this.text
+                    }
+                }).then(res =>{
+                    this.articleData =res;
+                    this.sortYear();
+                    this.groupBy();
+                    this.groupByAuthor();
+                    // this.groupByType();
+                    this.groupByVen();
+                })
+            },
 
             searchAuthor(authorName) {
                 console.log(authorName);
@@ -288,11 +294,12 @@
         mounted() {
             // this.text = this.$router.query.text;
             console.log(this.text);
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
-            // this.groupByType();
-            this.groupByVen();
+            // this.sortYear();
+            // this.groupBy();
+            // this.groupByAuthor();
+            // // this.groupByType();
+            // this.groupByVen();
+            this.getData();
         }
     }
 </script>

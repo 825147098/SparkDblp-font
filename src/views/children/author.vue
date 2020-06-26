@@ -67,6 +67,8 @@
 </template>
 
 <script>
+
+    import axios from 'axios';
     export default {
         name: "author",
 
@@ -239,16 +241,34 @@
             searchAuthor(authorName) {
                 console.log(authorName);
                 this.$emit("searchAuthor", authorName);
+            },
+
+            getData(){
+                axios.get("",{
+                    params:{
+                        msg:this.text
+                    }
+                }).then(res =>{
+                    this.articleData =res;
+                    this.sortYear();
+                    this.groupBy();
+                    this.groupByAuthor();
+                    //this.groupByType();
+                    this.groupByVen();
+                }).catch(error =>{
+                    console.log(error);
+                })
             }
         },
 
         mounted() {
             console.log(this.text);
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
+            // this.sortYear();
+            // this.groupBy();
+            // this.groupByAuthor();
             // this.groupByType();
-            this.groupByVen();
+            // this.groupByVen();
+            this.getData();
         }
     }
 </script>
