@@ -238,8 +238,6 @@
                 author_get: [],
                 year_get: [],
 
-                childText:'',
-
             }
         },
 
@@ -248,7 +246,6 @@
                 this.text_split();
                 this.getData();
             }
-
         },
 
         props: ['text'],
@@ -262,7 +259,7 @@
 
             groupBy() {
                 this.sortData = this.group_signal(this.articleData, "year");
-                console.log(this.text);
+                // console.log(this.text);
             },
 
             sortYear() {
@@ -311,12 +308,19 @@
 
 
             getData() {
-                axios.get("", {
-                    params: {
-                        label: 0,
+                /*
+                * title_get: "",
+                author_get: [],
+                year_get: [],*/
+                console.log(this.author_get)
+                axios.post("http://localhost:8080/article/search",
+                    {
+                        title: this.title_get,
+                        author: this.author_get,
+                        year: this.year_get,
                         msg: this.text
-                    }
-                }).then(res => {
+                    },
+                ).then(res => {
                     this.articleData = res;
                     this.sortYear();
                     this.groupBy();
@@ -324,37 +328,41 @@
                     // this.groupByType();
                     this.groupByVen();
                 })
+                /*  axios.get("", {
+                      params: {
+                          label: 0,
+
+                      }
+                  })*/
             },
 
             searchAuthor(authorName) {
-                console.log(authorName);
+                // console.log(authorName);
                 this.$emit("searchAuthor", authorName);
             },
 
-
             text_split() {
-                // console.log(this.text);
                 let list = this.text.split("&");
                 for (let i = 0; i < list.length; i++) {
                     // newlist.push(list[i].split(":"));
                     list[i] = list[i].split(":");
                 }
-                for (let i = 0; i < list.length; i++){
+                for (let i = 0; i < list.length; i++) {
                     switch (list[i][0]) {
                         case "title": {
-                            if(list[i].length > 2){
+                            if (list[i].length > 2) {
                                 console.log("文章名违规")
                                 break;
                             }
                             this.title_get = list[i][1];
                             break;
                         }
-                        case "year":{
+                        case "year": {
                             let yearList = list[i][1].split("..");
-                            if(yearList.length > 1){
-                                let starYear = Math.min(yearList[0],yearList[1]);
-                                let endYear = Math.max(yearList[0],yearList[1]);
-                                for(let j = starYear; j<= endYear; j++){
+                            if (yearList.length > 1) {
+                                let starYear = Math.min(yearList[0], yearList[1]);
+                                let endYear = Math.max(yearList[0], yearList[1]);
+                                for (let j = starYear; j <= endYear; j++) {
                                     this.year_get.push(j.toString());
                                 }
                                 // console.log(this.year_get);
@@ -365,7 +373,7 @@
                             break;
                         }
 
-                        case "author":{
+                        case "author": {
                             this.author_get = list[i][1].split(",");
                             break;
                         }

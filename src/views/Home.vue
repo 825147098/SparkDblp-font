@@ -165,7 +165,7 @@
                 switch (this.myRadioChose) {
                     case 0:
                         // console.log(this.myRadioChose);
-                        console.log(this.searchInput);
+                        console.log("searchInput" + this.searchInput);
                         this.flag = false;
                         this.author = false;
                         this.publish = false;
