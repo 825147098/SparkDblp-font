@@ -98,7 +98,7 @@
             },
 
             getData() {
-                axios.get("http://localhost:8080/authors/search", {
+                axios.get("http://localhost:8080/authors", {
                     params: {
                         _VALUE: this.text
                     }

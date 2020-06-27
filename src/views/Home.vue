@@ -3,9 +3,9 @@
         <el-header height="60px" class="homeBar">
             <el-menu mode="horizontal" background-color="#545c64" text-color="#fff">
                 <!--<el-submenu index="homeMenue">-->
-                    <!--<template slot="title">主页</template>-->
-                    <!--<el-menu-item index="homeBlog">博客</el-menu-item>-->
-                    <!--<el-menu-item index="homeStatistics">统计</el-menu-item>-->
+                <!--<template slot="title">主页</template>-->
+                <!--<el-menu-item index="homeBlog">博客</el-menu-item>-->
+                <!--<el-menu-item index="homeStatistics">统计</el-menu-item>-->
                 <!--</el-submenu>-->
                 <el-menu-item index="Home" @click="redo">
                     <el-link href="localhost:8080/Home">主页</el-link>
@@ -95,10 +95,10 @@
                         src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2420980653,1880035631&fm=26&gp=0.jpg"
                         fit="scale-down" style="width: 1000px;height: 660px"></el-image>
             </el-main>
-            <Combined v-if="conbined" :text = "searchInput" @searchAuthor="searchAuthor"></Combined>
-            <author v-if="author" :text = "authorName" @searchAuthor="searchAuthor" ></author>
-            <publiaction v-if="publish" :text = "searchInput" @searchAuthor="searchAuthor"></publiaction>
-            <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text = "searchInput"></searchAut>
+            <Combined v-if="conbined" :text="searchInput" @searchAuthor="searchAuthor"></Combined>
+            <author v-if="author" :text="authorName" @searchAuthor="searchAuthor"></author>
+            <publiaction v-if="publish" :text="searchInput" @searchAuthor="searchAuthor"></publiaction>
+            <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text="searchInput"></searchAut>
             <!--<router-view></router-view>-->
         </el-container>
     </el-container>
@@ -125,28 +125,28 @@
                 author: false,
                 conbined: false,
                 publish: false,
-                searchAut:false,
+                searchAut: false,
 
-                authorName:'',
+                authorName: '',
             }
         },
         // props:['text'],
         methods: {
-            redo(){
+            redo() {
                 this.flag = true;
                 this.author = false;
                 this.publish = false;
                 this.conbined = false;
-                this.searchAut=false;
+                this.searchAut = false;
             },
 
-            searchAuthor(authorName){
+            searchAuthor(authorName) {
                 this.authorName = authorName;
                 this.flag = false;
                 this.author = true;
                 this.publish = false;
                 this.conbined = false;
-                this.searchAut=false;
+                this.searchAut = false;
                 console.log(authorName);
             },
 
@@ -154,31 +154,31 @@
                 switch (this.myRadioChose) {
                     case 0:
                         // console.log(this.myRadioChose);
-                        console.log(this.searchInput);
+                        console.log("searchInput" + this.searchInput);
                         this.flag = false;
                         this.author = false;
                         this.publish = false;
                         this.conbined = true;
-                        this.searchAut=false;
+                        this.searchAut = false;
                         break;
                     case 1:
                         this.flag = false;
                         this.author = false;
                         this.publish = false;
                         this.conbined = false;
-                        this.searchAut=true;
+                        this.searchAut = true;
                         break;
                     case 3:
                         this.flag = false;
                         this.author = false;
                         this.publish = true;
                         this.conbined = false;
-                        this.searchAut=false;
+                        this.searchAut = false;
                         break
                 }
             },
 
-            change(){
+            change() {
                 // this.redo();
                 // this.searchJson();
                 switch (this.myRadioChose) {
