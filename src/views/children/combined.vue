@@ -311,7 +311,14 @@
                 * title_get: "",
                 author_get: [],
                 year_get: [],*/
-                console.log(this.author_get)
+
+                console.log("getdata")
+                console.log({
+                    title: this.title_get,
+                    author: this.author_get,
+                    year: this.year_get,
+                    msg: this.text
+                })
                 axios.post("http://localhost:8080/article/search",
                     {
                         title: this.title_get,
@@ -320,7 +327,8 @@
                         msg: this.text
                     },
                 ).then(res => {
-                    this.articleData = res;
+                    this.articleData = res.data;
+                    console.log(res.data)
                     this.sortYear();
                     this.groupBy();
                     this.groupByAuthor();
