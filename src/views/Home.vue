@@ -34,8 +34,9 @@
                     <!--//数据隐私政策-->
                 </el-submenu>
                 <el-menu-item style="width: 400px; float: right">
-                    <el-input size="mini" v-model="searchInput" style="width: 100%; " clearable
-                              @keyup.enter.native="searchJson" @change="change"></el-input>
+                    <el-input size="mini" v-model="searchInput" style="width: 80%; " clearable
+                              @keyup.enter.native="searchJson" @keyup.space.native="addSpace"/>
+                    <!--<el-button style="height: 28px;margin: 3px 0 0 5px" @click="searchJson"></el-button>-->
                 </el-menu-item>
                 <el-menu-item style="float: right">
                     <el-submenu index="searchLabel">
@@ -95,10 +96,10 @@
                         src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2420980653,1880035631&fm=26&gp=0.jpg"
                         fit="scale-down" style="width: 1000px;height: 660px"></el-image>
             </el-main>
-            <Combined v-if="conbined" :text="searchInput" @searchAuthor="searchAuthor"></Combined>
+            <Combined v-if="conbined" :text="propInput" @searchAuthor="searchAuthor"></Combined>
             <author v-if="author" :text="authorName" @searchAuthor="searchAuthor"></author>
-            <publiaction v-if="publish" :text="searchInput" @searchAuthor="searchAuthor"></publiaction>
-            <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text="searchInput"></searchAut>
+            <publiaction v-if="publish" :text="propInput" @searchAuthor="searchAuthor"></publiaction>
+            <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text="propInput"></searchAut>
             <!--<router-view></router-view>-->
         </el-container>
     </el-container>
@@ -128,6 +129,7 @@
                 searchAut: false,
 
                 authorName: '',
+                propInput:'',
             }
         },
         // props:['text'],
@@ -140,6 +142,10 @@
                 this.searchAut = false;
             },
 
+            changeInput(){
+                this.propInput = this.searchInput;
+            },
+
             searchAuthor(authorName) {
                 this.authorName = authorName;
                 this.flag = false;
@@ -150,7 +156,12 @@
                 console.log(authorName);
             },
 
+            addSpace() {
+                this.searchInput += ' ';
+            },
+
             searchJson() {
+                this.changeInput();
                 switch (this.myRadioChose) {
                     case 0:
                         // console.log(this.myRadioChose);
@@ -178,31 +189,7 @@
                 }
             },
 
-            change() {
-                // this.redo();
-                // this.searchJson();
-                switch (this.myRadioChose) {
-                    case 0:
-                        // this.conbined = false;
-                        // setTimeout(() =>{
-                        //     this.conbined = true;
-                        //     this.$forceUpdate();
-                        // });
-                        break;
-                    case 1:
-                        // this.searchAut = false;
-                        // setTimeout(() =>{
-                        //     this.searchAut = true;
-                        // });
-                        break;
-                    case 3:
-                        // this.publish = false;
-                        // setTimeout(() =>{
-                        //     this.publish = true;
-                        // });
-                        break;
-                }
-            }
+
         },
 
         mounted() {

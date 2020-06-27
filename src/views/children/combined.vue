@@ -156,7 +156,8 @@
                         "url": "db/journals/corr/corr1309.html#RossiFF13",
                         "volume": "abs/1309.2172",
                         "year": 2013
-                    }, {
+                    },
+                    {
                         "_id": {"$oid": "5eedea99310f336f41bf5e86"},
                         "_key": "journals/corr/abs-1806-03693",
                         "_mdate": "2018-08-13",
@@ -185,7 +186,8 @@
                         "url": "db/journals/corr/corr1806.html#abs-1806-03693",
                         "volume": "abs/1806.03693",
                         "year": 2018
-                    }, {
+                    },
+                    {
                         "_id": {"$oid": "5eedea9a310f336f41bf7085"},
                         "_key": "journals/bmcbi/PfeiferLHK07",
                         "_mdate": "2020-03-15",
@@ -241,8 +243,7 @@
 
         watch: {
             text: function () {
-                // console.log(this.text);
-                // this.text_split();
+                this.text_split();
                 this.getData();
             }
         },
@@ -390,12 +391,16 @@
                 console.log(this.title_get);
                 console.log(this.year_get);
                 console.log(this.author_get);
-            }
+            },
 
+            con(){
+                console.log(this.text);
+            }
 
         },
         mounted() {
-            this.text_split()
+            this.childText = this.text;
+            this.text_split();
             // this.text = this.$router.query.text;
             // console.log(this.text);
             // this.sortYear();
@@ -403,6 +408,7 @@
             // this.groupByAuthor();
             // this.groupByVen();
             // this.getData();
+
         }
     }
 </script>
