@@ -6,15 +6,37 @@
         <el-container>
             <el-aside width="400px" style="padding: 20px">
                 <el-tabs type="border-card">
-                    <el-tab-pane >
+                    <el-tab-pane>
+                        <span slot="label">搜索规则</span>
+                        <div style="font-size: 13px">
+                            <span>Title允许使用一个字符串作为输。例如:</span><br>
+                            <span style="margin-left: 10%">title:bigdata title中含有bigdata字符串的论文</span><br>
+                            <span style="margin-left: 10%">注意：</span><br>
+                            <span style="margin-left: 10%">1）title大小写不敏感，这意味着输入BigData也会返回bigdata的数据</span>
+                            <el-divider></el-divider>
+                            <span>Year允许输入一个整形数字，或者整形数字的Range。例如：</span><br>
+                            <span style="margin-left: 10%">year:2019 查询2019的论文</span><br>
+                            <span style="margin-left: 10%">year:2010..2020 查询2010到2020的论文</span><br>
+                            <el-divider></el-divider>
+                            <span>Author允许输入字符串或者字符串集合。例如:</span><br>
+                            <span style="margin-left: 10%">author: Yang 查询含有作者姓名含有Yang的论文</span><br>
+                            <span style="margin-left: 10%">author: Yang,mike 查询作者姓名的含有Yang或者mike的论文</span><br>
+                            <span style="margin-left: 10%">注意：</span><br>
+                            <span style="margin-left: 10%">1）作者姓名只允许精确匹配，这意味着当输入为Yan的时候，不会显示作者包含Yang的论文。</span><br>
+                            <span style="margin-left: 10%">2）作者姓名大小写敏感，这意味着当输入为yan的时候，不会显示作者包含Yan的论文。</span>
+                            <el-divider></el-divider>
+                            <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
+                        </div>
+                    </el-tab-pane>
+                    <el-tab-pane>
                         <span slot="label">作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
-                            <el-button type="text" @click="searchAuthor(aut)" size="small"  >
+                            <el-button type="text" @click="searchAuthor(aut)" size="small">
                                 {{aut}}({{sortAuthor[aut].length}})
                             </el-button>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">Veneu划分</span>
                         <div style="font-size: 13px; " v-for="ven in venList" :key="ven">
                             {{ven}}({{sortVen[ven].length}})
@@ -23,7 +45,7 @@
                     <!--<el-tab-pane :disabled=flag>-->
                     <!--<span slot="label">类型划分</span>-->
                     <!--</el-tab-pane>-->
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">年份划分</span>
                         <div style="font-size: 13px" v-for="years in nowYear" :key="years">
                             {{years}}({{sortData[years].length}})
@@ -68,6 +90,7 @@
 
 <script>
     import axios from 'axios';
+
     export default {
         name: "combined",
         data() {
@@ -209,18 +232,22 @@
                 sortType: [],
                 typeList: [],
 
+                title_get: "",
+                author_get: [],
+                year_get: [],
 
             }
         },
 
-        watch:{
+        watch: {
             text: function () {
-                console.log(this.text);
+                // console.log(this.text);
+                this.text_split();
                 this.getData();
             }
         },
 
-        props:['text'],
+        props: ['text'],
         methods: {
             group_signal(data, key) {
                 return data.reduce(function (prev, cur) {
@@ -279,14 +306,14 @@
             // },
 
 
-            getData(){
-                axios.get("",{
-                    params:{
-                        label:0,
-                        msg:this.text
+            getData() {
+                axios.get("", {
+                    params: {
+                        label: 0,
+                        msg: this.text
                     }
-                }).then(res =>{
-                    this.articleData =res;
+                }).then(res => {
+                    this.articleData = res;
                     this.sortYear();
                     this.groupBy();
                     this.groupByAuthor();
@@ -298,15 +325,62 @@
             searchAuthor(authorName) {
                 console.log(authorName);
                 this.$emit("searchAuthor", authorName);
+            },
+
+            text_split() {
+                let list = this.text.split("&");
+                for (let i = 0; i < list.length; i++) {
+                    // newlist.push(list[i].split(":"));
+                    list[i] = list[i].split(":");
+                }
+                for (let i = 0; i < list.length; i++){
+                    switch (list[i][0]) {
+                        case "title": {
+                            if(list[i].length > 2){
+                                console.log("文章名违规")
+                                break;
+                            }
+                            this.title_get = list[i][1];
+                            break;
+                        }
+                        case "year":{
+                            let yearList = list[i][1].split("..");
+                            if(yearList.length > 1){
+                                let starYear = Math.min(yearList[0],yearList[1]);
+                                let endYear = Math.max(yearList[0],yearList[1]);
+                                for(let j = starYear; j<= endYear; j++){
+                                    this.year_get.push(j.toString());
+                                }
+                                // console.log(this.year_get);
+                                break;
+                            } else {
+                                this.year_get.push(list[i][1]);
+                            }
+                            break;
+                        }
+
+                        case "author":{
+                            this.author_get = list[i][1].split(",");
+                            break;
+                        }
+
+                    }
+                }
+                console.log(this.title_get);
+                console.log(this.year_get);
+                console.log(this.author_get);
             }
+
+
         },
         mounted() {
+            this.text_split()
             // this.text = this.$router.query.text;
             // console.log(this.text);
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
-            this.groupByVen();
+            // this.sortYear();
+            // this.groupBy();
+            // this.groupByAuthor();
+            // this.groupByVen();
             // this.getData();
         }
     }
@@ -327,7 +401,8 @@
         padding: 4px 24px;
         margin: 2ex 0em;
     }
-    .divider{
+
+    .divider {
         border-bottom: 1px whitesmoke solid;
     }
 </style>
