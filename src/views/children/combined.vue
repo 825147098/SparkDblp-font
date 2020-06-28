@@ -74,7 +74,7 @@
                         <span v-if="item.author.indexOf(authors) < item.author.length - 1">,</span>
                         </span>
                                 :<br>
-                                <span>{{item.title._VALUE}}</span>
+                                <span>{{item.title}}</span>
                                 <!--类型划分加链接-->
                                 <span>{{item.journal}}</span>
                                 <span>{{item.volume}}</span>
@@ -120,9 +120,7 @@
                             }
                         ],
                         "journal": "CoRR",
-                        "title": {
-                            "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
-                        },
+                        "title": "Conceptualizing Blockchains: Characteristics & Applications.",
                         "url": "db/journals/corr/corr1806.html#abs-1806-03693",
                         "volume": "abs/1806.03693",
                         "year": 2018
@@ -396,7 +394,6 @@
 
         },
         mounted() {
-            this.childText = this.text;
             this.text_split();
             // this.text = this.$router.query.text;
             // console.log(this.text);
