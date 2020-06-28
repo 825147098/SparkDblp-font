@@ -53,7 +53,7 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main>
+            <el-main  v-loading="loading">
                 <el-col>
                     <ul class="pub-list" v-for="year in nowYear " :key="year._VALUE">
                         <li>{{year}}</li>
@@ -241,6 +241,7 @@
                 author_get: [],
                 year_get: [],
 
+                loading:false,
             }
         },
 
@@ -366,6 +367,7 @@
 
                       }
                   })*/
+                this.loading = false;
             },
 
             searchAuthor(authorName) {
@@ -417,6 +419,8 @@
 
                     }
                 }
+
+                this.loading = true;
                 console.log(this.title_get);
                 console.log(this.year_get);
                 console.log(this.author_get);
@@ -428,11 +432,11 @@
             this.text_split();
             // this.text = this.$router.query.text;
             // console.log(this.text);
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
-            this.groupByVen();
-            // this.getData();
+            // this.sortYear();
+            // this.groupBy();
+            // this.groupByAuthor();
+            // this.groupByVen();
+            this.getData();
 
         }
     }
