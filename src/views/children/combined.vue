@@ -53,7 +53,7 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main  v-loading="loading">
+            <el-main v-loading="loading">
                 <el-col>
                     <ul class="pub-list" v-for="year in nowYear " :key="year.value">
                         <li>{{year.value}}</li>
@@ -61,7 +61,7 @@
                         <li v-for="item in sortData[year.value]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
                             <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false"
-                                     v-if="item.ee[0]._VALUE != null">
+                                     v-if="item.ee != null">
                                 <el-button circle icon="el-icon-document" size="mini"></el-button>
                             </el-link>
                             <el-tooltip v-else content="sorry,无链接" placement="bottom-end">
@@ -241,7 +241,7 @@
                 author_get: [],
                 year_get: [],
 
-                loading:false,
+                loading: false,
             }
         },
 
@@ -280,11 +280,11 @@
                         yearArr.push(this.articleData[i].year);
                     }
                 }
-                let yearsArr= [];
+                let yearsArr = [];
                 yearArr = yearArr.sort(function (a, b) {
                     return b - a;
                 });
-                for(let i =0; i<yearArr.length;i++){
+                for (let i = 0; i < yearArr.length; i++) {
                     yearsArr.push({value: yearArr[i], len: this.sortData[yearArr[i]].length});
                 }
                 console.log(this.sortData);
@@ -355,7 +355,7 @@
                 author_get: [],
                 year_get: [],*/
                 console.log(this.author_get)
-                axios.post("http://localhost:8080/article/search",
+                axios.post("http://192.168.3.5:8080/article/search",
                     {
                         title: this.title_get,
                         author: this.author_get,
@@ -365,6 +365,9 @@
                 ).then(res => {
                     // this.cleanAll();
                     this.articleData = res.data;
+
+                    this.con();
+
                     this.groupBy();
                     this.sortYear();
 
@@ -437,15 +440,22 @@
                 // console.log(this.author_get);
             },
 
+            con() {
+                for (let i = 0; i < this.articleData.length; i++) {
+                    if (this.articleData[i].ee == null)
+                        console.log(this.articleData[i]);
+                }
+            }
+
 
         },
         mounted() {
             this.text_split();
-            this.groupBy();
-            this.sortYear();
-            this.groupByAuthor();
-            this.groupByVen();
-            // this.getData();
+            // this.groupBy();
+            // this.sortYear();
+            // this.groupByAuthor();
+            // this.groupByVen();
+            this.getData();
 
         }
     }
