@@ -47,18 +47,18 @@
                     <!--</el-tab-pane>-->
                     <el-tab-pane>
                         <span slot="label">年份划分</span>
-                        <div style="font-size: 13px" v-for="years in nowYear" :key="years">
-                            {{years}}({{sortData[years].length}})
+                        <div style="font-size: 13px" v-for="years in nowYear" :key="years.value">
+                            {{years.value}}&nbsp;(&nbsp;{{years.len}}&nbsp;)
                         </div>
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
             <el-main  v-loading="loading">
                 <el-col>
-                    <ul class="pub-list" v-for="year in nowYear " :key="year._VALUE">
-                        <li>{{year}}</li>
+                    <ul class="pub-list" v-for="year in nowYear " :key="year.value">
+                        <li>{{year.value}}</li>
                         <br>
-                        <li v-for="item in sortData[year]" :key="item._VALUE"
+                        <li v-for="item in sortData[year.value]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
                             <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false"
                                      v-if="item.ee[0]._VALUE != null">
@@ -280,19 +280,19 @@
                         yearArr.push(this.articleData[i].year);
                     }
                 }
-                // let yearsArr= [];
-                // yearArr = yearArr.sort(function (a, b) {
-                //     return b - a;
-                // });
-                // for(let i =0; i<yearArr.length;i++){
-                //     yearsArr.push({value: yearArr[i], len: this.sortData[yearArr[i]].length});
-                // }
-                // console.log(this.sortData);
-                // this.nowYear = yearsArr;
-                // console.log(this.nowYear)
-                this.nowYear = yearArr.sort(function (a, b) {
-                    return b - a
+                let yearsArr= [];
+                yearArr = yearArr.sort(function (a, b) {
+                    return b - a;
                 });
+                for(let i =0; i<yearArr.length;i++){
+                    yearsArr.push({value: yearArr[i], len: this.sortData[yearArr[i]].length});
+                }
+                console.log(this.sortData);
+                this.nowYear = yearsArr;
+                // console.log(this.nowYear)
+                // this.nowYear = yearArr.sort(function (a, b) {
+                //     return b - a
+                // });
             },
 
             groupByAuthor() {
@@ -441,11 +441,11 @@
         },
         mounted() {
             this.text_split();
-            // this.groupBy();
-            // this.sortYear();
-            // this.groupByAuthor();
-            // this.groupByVen();
-            this.getData();
+            this.groupBy();
+            this.sortYear();
+            this.groupByAuthor();
+            this.groupByVen();
+            // this.getData();
 
         }
     }
