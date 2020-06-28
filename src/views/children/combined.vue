@@ -60,9 +60,9 @@
                         <br>
                         <li v-for="item in sortData[year]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
-                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false">
-                                <el-button circle icon="el-icon-document" size="mini"></el-button>
-                            </el-link>
+<!--                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false">-->
+<!--                                <el-button circle icon="el-icon-document" size="mini"></el-button>-->
+<!--                            </el-link>-->
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
                     <span v-for="authors in item.author" :key="authors._VALUE">
                             {{authors._VALUE}}
