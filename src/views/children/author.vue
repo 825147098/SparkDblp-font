@@ -295,8 +295,9 @@
 
         mounted() {
             this.authorName = this.text;
-            this.sortYear();
             this.groupBy();
+            this.sortYear();
+
             this.groupByAuthor();
             // this.groupByType();
             this.groupByVen();

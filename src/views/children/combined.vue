@@ -280,8 +280,18 @@
                         yearArr.push(this.articleData[i].year);
                     }
                 }
+                // let yearsArr= [];
+                // yearArr = yearArr.sort(function (a, b) {
+                //     return b - a;
+                // });
+                // for(let i =0; i<yearArr.length;i++){
+                //     yearsArr.push({value: yearArr[i], len: this.sortData[yearArr[i]].length});
+                // }
+                // console.log(this.sortData);
+                // this.nowYear = yearsArr;
+                // console.log(this.nowYear)
                 this.nowYear = yearArr.sort(function (a, b) {
-                    return b - a;
+                    return b - a
                 });
             },
 
@@ -355,8 +365,9 @@
                 ).then(res => {
                     // this.cleanAll();
                     this.articleData = res.data;
-                    this.sortYear();
                     this.groupBy();
+                    this.sortYear();
+
                     this.groupByAuthor();
                     // this.groupByType();
                     this.groupByVen();
@@ -421,19 +432,17 @@
                 }
 
                 this.loading = true;
-                console.log(this.title_get);
-                console.log(this.year_get);
-                console.log(this.author_get);
+                // console.log(this.title_get);
+                // console.log(this.year_get);
+                // console.log(this.author_get);
             },
 
 
         },
         mounted() {
             this.text_split();
-            // this.text = this.$router.query.text;
-            // console.log(this.text);
-            // this.sortYear();
             // this.groupBy();
+            // this.sortYear();
             // this.groupByAuthor();
             // this.groupByVen();
             this.getData();

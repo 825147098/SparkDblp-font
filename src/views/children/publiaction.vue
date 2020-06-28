@@ -336,8 +336,9 @@
                     }).then(res =>{
                         this.cleanAll();
                         this.publishData =res.data;
-                        this.sortYear();
                         this.groupBy();
+                        this.sortYear();
+
                         this.groupByAuthor();
                         //this.groupByType();
                         this.groupByVen();
