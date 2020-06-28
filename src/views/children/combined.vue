@@ -69,7 +69,7 @@
                             <el-tooltip class="item" effect="dark" :content=authors._orcid placement="bottom-end"
                                         v-if="authors._orcid != null">
                                 <el-image src="https://dblp2.uni-trier.de/img/orcid-mark.12x12.png"
-                                          style="padding-left:0.25em;" alt=""></el-image>
+                                          style="padding-left:0.25em;" ></el-image>
                             </el-tooltip>
                         <span v-if="item.author.indexOf(authors) < item.author.length - 1">,</span>
                         </span>
@@ -347,6 +347,11 @@
                     // newlist.push(list[i].split(":"));
                     list[i] = list[i].split(":");
                 }
+
+                this.author_get.splice(0,this.author_get.length);
+                this.title_get.clean();
+                this.year_get.splice(0,this.year_get.length);
+
                 for (let i = 0; i < list.length; i++) {
                     switch (list[i][0]) {
                         case "title": {
