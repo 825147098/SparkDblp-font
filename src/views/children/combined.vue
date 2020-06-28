@@ -364,6 +364,7 @@
                     },
                 ).then(res => {
                     // this.cleanAll();
+                    console.log(res.data);
                     this.articleData = res.data;
                     this.groupBy();
                     this.sortYear();
