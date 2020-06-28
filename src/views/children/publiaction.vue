@@ -1,5 +1,9 @@
 <template>
     <el-container>
+        <el-alert v-if="checkBox" style="width: 400px; margin: auto"
+                  title="输入为空，请重新输入" center closable
+                  show-icon type="warning">
+        </el-alert>
         <el-header height="60px">
             <h3 class="headline">Search &nbsp; For &nbsp; Publications</h3>
         </el-header>
@@ -250,6 +254,7 @@
                 venList: [],
                 sortType: [],
                 typeList: [],
+                checkBox: false,
 
             }
         },
@@ -350,15 +355,19 @@
                     }).catch(error =>{
                         console.log(error);
                     })
+                },
+            checkbox() {
+                if (this.text == '') {
+                    this.checkBox = true;
+                } else {
+                    this.getData();
                 }
+            }
 
 
         },
         mounted() {
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
-            this.groupByVen();
+            this.checkbox();
             // this.getData();
         }
     }

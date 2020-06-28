@@ -1,5 +1,9 @@
 <template>
     <el-container>
+        <el-alert v-if="checkBox" style="width: 400px; margin: auto"
+                  title="输入为空，请重新输入" center closable
+                  show-icon type="warning">
+        </el-alert>
         <el-header height="60px">
             <h3 class="headline">{{authorName}}</h3>
         </el-header>
@@ -209,6 +213,7 @@
                 sortType: [],
                 typeList: [],
                 name:"",
+                checkBox: false,
             }
         },
 
@@ -295,18 +300,20 @@
                 }).catch(error =>{
                     console.log(error);
                 })
+            },
+
+            checkbox() {
+                if (this.text == '') {
+                    this.checkBox = true;
+                } else {
+                    this.getData();
+                }
             }
         },
 
         mounted() {
             this.authorName = this.text;
-            this.groupBy();
-            this.sortYear();
-
-            this.groupByAuthor();
-            // this.groupByType();
-            this.groupByVen();
-            // this.getData();
+            this.checkbox();
         }
     }
 </script>
