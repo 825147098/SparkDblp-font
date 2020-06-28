@@ -74,7 +74,7 @@
                         <span v-if="item.author.indexOf(authors) < item.author.length - 1">,</span>
                         </span>
                                 :<br>
-                                <span>{{item.title._VALUE}}</span>
+                                <span>{{item.title}}</span>
                                 <!--类型划分加链接-->
                                 <span>{{item.journal}}</span>
                                 <span>{{item.volume}}</span>
