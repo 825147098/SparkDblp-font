@@ -60,9 +60,12 @@
                         <br>
                         <li v-for="item in sortData[year]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
-<!--                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false">-->
-<!--                                <el-button circle icon="el-icon-document" size="mini"></el-button>-->
-<!--                            </el-link>-->
+                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false" v-if="item.ee[0]._VALUE != null">
+                                <el-button circle icon="el-icon-document" size="mini"></el-button>
+                            </el-link>
+                            <el-tooltip v-else  content="sorry,无链接" placement="bottom-end">
+                                <el-button circle icon="el-icon-document" size="mini" disabled style="margin-right: 20px"></el-button>
+                            </el-tooltip>
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
                     <span v-for="authors in item.author" :key="authors._VALUE">
                             {{authors._VALUE}}
@@ -115,7 +118,7 @@
                         ],
                         "ee": [
                             {
-                                "_VALUE": "http://arxiv.org/abs/1806.03693",
+                                // "_VALUE": "",
                                 "_type": "oa"
                             }
                         ],
@@ -310,14 +313,7 @@
                 * title_get: "",
                 author_get: [],
                 year_get: [],*/
-
-                console.log("getdata")
-                console.log({
-                    title: this.title_get,
-                    author: this.author_get,
-                    year: this.year_get,
-                    msg: this.text
-                })
+                console.log(this.author_get)
                 axios.post("http://localhost:8080/article/search",
                     {
                         title: this.title_get,
@@ -326,8 +322,7 @@
                         msg: this.text
                     },
                 ).then(res => {
-                    this.articleData = res.data;
-                    console.log(res.data)
+                    this.articleData = res;
                     this.sortYear();
                     this.groupBy();
                     this.groupByAuthor();
@@ -405,10 +400,10 @@
             this.text_split();
             // this.text = this.$router.query.text;
             // console.log(this.text);
-            // this.sortYear();
-            // this.groupBy();
-            // this.groupByAuthor();
-            // this.groupByVen();
+            this.sortYear();
+            this.groupBy();
+            this.groupByAuthor();
+            this.groupByVen();
             // this.getData();
 
         }
