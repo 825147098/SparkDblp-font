@@ -322,7 +322,7 @@
                         msg: this.text
                     },
                 ).then(res => {
-                    this.articleData = res;
+                    this.articleData = res.data;
                     this.sortYear();
                     this.groupBy();
                     this.groupByAuthor();
