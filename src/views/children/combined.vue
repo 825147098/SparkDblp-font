@@ -67,7 +67,7 @@
                                 <el-button circle icon="el-icon-document" size="mini" disabled style="margin-right: 20px"></el-button>
                             </el-tooltip>
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
-                    <span v-for="authors in item.author" :key="authors._VALUE">
+                    <span v-for="authors in item.author" :key="authors._VALUE" class="name">
                             {{authors._VALUE}}
                             <el-tooltip class="item" effect="dark" :content=authors._orcid placement="bottom-end"
                                         v-if="authors._orcid != null">
@@ -77,11 +77,11 @@
                         <span v-if="item.author.indexOf(authors) < item.author.length - 1">,</span>
                         </span>
                                 :<br>
-                                <span>{{item.title}}</span>
+                                <span class="title">{{item.title}}</span>
                                 <!--类型划分加链接-->
-                                <span>{{item.journal}}</span>
-                                <span>{{item.volume}}</span>
-                                (<span>{{item.year}}</span>)
+                                <span class="name">{{item.journal}}</span>
+                                <span class="name">{{item.volume}}</span>
+                                (<span class="name">{{item.year}}</span>)
                             </cite><br>
                         </li>
                     </ul>
@@ -438,5 +438,12 @@
 
     .divider {
         border-bottom: 1px whitesmoke solid;
+    }
+    .title{
+        color: #666666;
+        font-weight: 700;
+    }
+    .name{
+        color: #7d848a;
     }
 </style>
