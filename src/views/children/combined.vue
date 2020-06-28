@@ -349,7 +349,7 @@
                 }
 
                 this.author_get.splice(0,this.author_get.length);
-                this.title_get = "";
+                this.title_get = null;
                 this.year_get.splice(0,this.year_get.length);
 
                 for (let i = 0; i < list.length; i++) {
