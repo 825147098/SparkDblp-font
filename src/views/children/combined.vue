@@ -260,18 +260,19 @@
 
             groupBy() {
                 this.sortData = this.group_signal(this.articleData, "year");
-                // console.log(this.text);
+                 console.log(this.articleData.length);
             },
 
             sortYear() {
                 let yearArr = [];
-                for (var i = 0; i < this.articleData.length; i++) {
-                    if (yearArr.indexOf((this.articleData[i].year)) == -1) {
+                let length = this.articleData.length;
+                for (let i = 0; i < length; i++) {
+                    if (yearArr.indexOf(this.articleData[i].year) == -1) {
                         yearArr.push(this.articleData[i].year);
                     }
                 }
                 this.nowYear = yearArr.sort(function (a, b) {
-                    return b - a
+                    return b - a;
                 });
             },
 
@@ -307,6 +308,15 @@
             //     console.log(this.sortType);
             // },
 
+            cleanAll(){
+                this.sortData.splice(0,this.sortData.length);
+                this.sortAuthor.splice(0,this.sortAuthor.length);
+                this.autList.splice(0,this.autList.length);
+                this.venList.splice(0,this.venList.length);
+                this.sortVen.splice(0,this.sortVen.length);
+                this.sortData.splice(0,this.sortData.length);
+                this.nowYear.splice(0,this.nowYear.length);
+            },
 
             getData() {
                 /*
@@ -322,6 +332,7 @@
                         msg: this.text
                     },
                 ).then(res => {
+                    this.cleanAll();
                     this.articleData = res.data;
                     this.sortYear();
                     this.groupBy();

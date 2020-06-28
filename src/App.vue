@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="padding: 0;min-height: 700px; width: 80%; margin: auto">
+        <div style="padding: 0;min-height: 700px; max-width:1460px;  margin: auto">
             <router-view></router-view>
         </div>
     </div>
