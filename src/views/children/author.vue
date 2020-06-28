@@ -265,12 +265,22 @@
                 this.$emit("searchAuthor", authorName);
             },
 
+            cleanAll(){
+                this.sortData.splice(0,this.sortData.length);
+                this.sortAuthor.splice(0,this.sortAuthor.length);
+                this.autList.splice(0,this.autList.length);
+                this.venList.splice(0,this.venList.length);
+                this.sortVen.splice(0,this.sortVen.length);
+                this.nowYear.splice(0,this.nowYear.length);
+            },
+
             getData(){
                 axios.get("",{
                     params:{
                         msg:this.text
                     }
                 }).then(res =>{
+                    this.cleanAll();
                     this.articleData =res.data;
                     this.sortYear();
                     this.groupBy();

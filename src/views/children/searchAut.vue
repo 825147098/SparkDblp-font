@@ -91,6 +91,7 @@
                     });
                 }*/
                 // this.authList = list;
+                this.lucklyList.splice(0,this.lucklyList.length);
                 if (this.authList.length >= 20) {
                     this.getLuckly();
                 }

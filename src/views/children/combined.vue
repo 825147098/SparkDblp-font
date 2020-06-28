@@ -260,7 +260,7 @@
 
             groupBy() {
                 this.sortData = this.group_signal(this.articleData, "year");
-                 console.log(this.articleData.length);
+                 // console.log(this.articleData.length);
             },
 
             sortYear() {
@@ -314,7 +314,6 @@
                 this.autList.splice(0,this.autList.length);
                 this.venList.splice(0,this.venList.length);
                 this.sortVen.splice(0,this.sortVen.length);
-                this.sortData.splice(0,this.sortData.length);
                 this.nowYear.splice(0,this.nowYear.length);
             },
 
