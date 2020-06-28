@@ -325,7 +325,7 @@
                             msg:this.text
                         }
                     }).then(res =>{
-                        this.publishData =res;
+                        this.publishData =res.data;
                         this.sortYear();
                         this.groupBy();
                         this.groupByAuthor();
