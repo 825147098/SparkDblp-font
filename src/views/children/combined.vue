@@ -60,11 +60,13 @@
                         <br>
                         <li v-for="item in sortData[year]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
-                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false" v-if="item.ee[0]._VALUE != null">
+                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false"
+                                     v-if="item.ee[0]._VALUE != null">
                                 <el-button circle icon="el-icon-document" size="mini"></el-button>
                             </el-link>
-                            <el-tooltip v-else  content="sorry,无链接" placement="bottom-end">
-                                <el-button circle icon="el-icon-document" size="mini" disabled style="margin-right: 20px"></el-button>
+                            <el-tooltip v-else content="sorry,无链接" placement="bottom-end">
+                                <el-button circle icon="el-icon-document" size="mini" disabled
+                                           style="margin-right: 20px"></el-button>
                             </el-tooltip>
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
                     <span v-for="authors in item.author" :key="authors._VALUE" class="name">
@@ -72,7 +74,7 @@
                             <el-tooltip class="item" effect="dark" :content=authors._orcid placement="bottom-end"
                                         v-if="authors._orcid != null">
                                 <el-image src="https://dblp2.uni-trier.de/img/orcid-mark.12x12.png"
-                                          style="padding-left:0.25em;" ></el-image>
+                                          style="padding-left:0.25em;"></el-image>
                             </el-tooltip>
                         <span v-if="item.author.indexOf(authors) < item.author.length - 1">,</span>
                         </span>
@@ -259,11 +261,17 @@
             },
 
             groupBy() {
+                if (this.sortData.length > 0) {
+                    this.sortData.splice(0, this.sortData);
+                }
                 this.sortData = this.group_signal(this.articleData, "year");
-                 // console.log(this.articleData.length);
+                // console.log(this.articleData.length);
             },
 
             sortYear() {
+                if (this.nowYear.length > 0) {
+                    this.nowYear.splice(0, this.nowYear.length);
+                }
                 let yearArr = [];
                 let length = this.articleData.length;
                 for (let i = 0; i < length; i++) {
@@ -283,8 +291,15 @@
                         arr.push({name: this.articleData[i].author[j]._VALUE, num: 0});
                     }
                 }
+                if (this.sortAuthor.length > 0) {
+                    this.sortAuthor = null;
+                }
                 this.sortAuthor = this.group_signal(arr, "name");
 
+
+                if (this.autList.length > 0) {
+                    this.autList.splice(0, this.autList.length);
+                }
                 for (let i = 0; i < arr.length; i++) {
                     if (this.autList.indexOf((arr[i].name)) == -1) {
                         this.autList.push(arr[i].name);
@@ -293,12 +308,18 @@
             },
 
             groupByVen() {
+                if (this.sortVen.length > 0) {
+                    this.sortVen.splice(0, this.sortVen.length);
+                }
                 this.sortVen = this.group_signal(this.articleData, "journal");
                 let venArr = [];
                 for (var i = 0; i < this.articleData.length; i++) {
                     if (venArr.indexOf((this.articleData[i].journal)) == -1) {
                         venArr.push(this.articleData[i].journal);
                     }
+                }
+                if (this.venList.length > 0) {
+                    this.venList.splice(0, this.venList.length);
                 }
                 this.venList = venArr;
             },
@@ -308,13 +329,13 @@
             //     console.log(this.sortType);
             // },
 
-            cleanAll(){
-                this.sortData.splice(0,this.sortData.length);
-                this.sortAuthor=null;
-                this.autList.splice(0,this.autList.length);
-                this.venList.splice(0,this.venList.length);
-                this.sortVen.splice(0,this.sortVen.length);
-                this.nowYear.splice(0,this.nowYear.length);
+            cleanAll() {
+                this.sortData.splice(0, this.sortData.length);
+                this.sortAuthor = null;
+                this.autList.splice(0, this.autList.length);
+                this.venList.splice(0, this.venList.length);
+                this.sortVen.splice(0, this.sortVen.length);
+                this.nowYear.splice(0, this.nowYear.length);
             },
 
             getData() {
@@ -331,7 +352,7 @@
                         msg: this.text
                     },
                 ).then(res => {
-                    this.cleanAll();
+                    // this.cleanAll();
                     this.articleData = res.data;
                     this.sortYear();
                     this.groupBy();
@@ -359,9 +380,9 @@
                     list[i] = list[i].split(":");
                 }
 
-                this.author_get.splice(0,this.author_get.length);
+                this.author_get.splice(0, this.author_get.length);
                 this.title_get = null;
-                this.year_get.splice(0,this.year_get.length);
+                this.year_get.splice(0, this.year_get.length);
 
                 for (let i = 0; i < list.length; i++) {
                     switch (list[i][0]) {
@@ -401,9 +422,6 @@
                 console.log(this.author_get);
             },
 
-            con(){
-                console.log(this.text);
-            }
 
         },
         mounted() {
@@ -439,11 +457,13 @@
     .divider {
         border-bottom: 1px whitesmoke solid;
     }
-    .title{
+
+    .title {
         color: #666666;
         font-weight: 700;
     }
-    .name{
+
+    .name {
         color: #7d848a;
     }
 </style>
