@@ -57,9 +57,9 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main  style="max-height: 750px; -webkit-scroll-snap-type: none">
+            <el-main style="max-height: 750px; -webkit-scroll-snap-type: none">
                 <el-col>
-                    <ul class="pub-list" v-for="year in nowYear " :key="year.value"  >
+                    <ul class="pub-list" v-for="year in nowYear " :key="year.value">
                         <li>{{year.value}}</li>
                         <br>
                         <li v-for="item in sortData[year.value]" :key="item._VALUE"
@@ -381,6 +381,9 @@
                     // this.groupByType();
                     this.groupByVen();
                     this.loading = false;
+                }).catch(err => {
+                    console.log(err);
+                    this.$message.error(err);
                 })
 
             },
