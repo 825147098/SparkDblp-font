@@ -285,9 +285,9 @@
             },
 
             getData(){
-                axios.get("",{
+                axios.get("http://192.168.3.5:8080/article/accurateAuthor",{
                     params:{
-                        msg:this.text
+                        author:this.text
                     }
                 }).then(res =>{
                     this.cleanAll();
