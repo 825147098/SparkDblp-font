@@ -5,7 +5,7 @@
                   show-icon type="warning">
         </el-alert>
         <el-header height="60px">
-            <h3 class="headline">Search &nbsp; For &nbsp; Combined</h3>
+            <h3 class="headline">Search &nbsp; For &nbsp; Authors</h3>
         </el-header>
         <el-main>
             <header class="hide-head">
@@ -53,7 +53,7 @@
                 authorName: "",
                 authList: [
                     {
-                        _VALUE: "空白数据",
+                        _VALUE: "",
                         _orcid: "",
                         _aux: "",
                     },
@@ -104,7 +104,7 @@
             },
 
             getData() {
-                axios.get("http://localhost:8080/authors", {
+                axios.get("http://http://192.168.3.5:8080/authors", {
                     params: {
                         _VALUE: this.text
                     }
