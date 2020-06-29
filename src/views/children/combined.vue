@@ -9,7 +9,7 @@
         </el-header>
         <el-container>
             <el-aside width="400px" style="padding: 20px;max-height: 650px; scroll">
-                <el-tabs type="border-card"  >
+                <el-tabs type="border-card">
                     <el-tab-pane>
                         <span slot="label">搜索规则</span>
                         <div style="font-size: 13px">
@@ -32,7 +32,7 @@
                             <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
                             <el-button type="text" @click="searchAuthor(aut)" size="small">
@@ -40,7 +40,7 @@
                             </el-button>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">Veneu划分</span>
                         <div style="font-size: 13px; " v-for="ven in venList" :key="ven">
                             {{ven}}({{sortVen[ven].length}})
@@ -57,9 +57,9 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main  style="max-height: 750px; -webkit-scroll-snap-type: none">
+            <el-main style="max-height: 750px; -webkit-scroll-snap-type: none">
                 <el-col>
-                    <ul class="pub-list" v-for="year in nowYear " :key="year.value"  >
+                    <ul class="pub-list" v-for="year in nowYear " :key="year.value">
                         <li>{{year.value}}</li>
                         <br>
                         <li v-for="item in sortData[year.value]" :key="item._VALUE"
@@ -381,6 +381,9 @@
                     // this.groupByType();
                     this.groupByVen();
                     this.loading = false;
+                }).catch(err => {
+                    console.log(err);
+                    this.$message.error(err);
                 })
 
             },
