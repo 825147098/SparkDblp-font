@@ -57,7 +57,7 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main v-loading="loading" style="max-height: 750px; -webkit-scroll-snap-type: none">
+            <el-main  style="max-height: 750px; -webkit-scroll-snap-type: none">
                 <el-col>
                     <ul class="pub-list" v-for="year in nowYear " :key="year.value"  >
                         <li>{{year.value}}</li>
@@ -245,7 +245,6 @@
                 author_get: [],
                 year_get: [],
 
-                loading: false,
                 checkBox: false
             }
         },
@@ -272,6 +271,7 @@
                 }
                 this.sortData = this.group_signal(this.articleData, "year");
                 // console.log(this.articleData.length);
+                console.log(this.articleData.length);
             },
 
             sortYear() {
@@ -374,7 +374,6 @@
                     console.log(res.data);
                     this.articleData = res.data;
 
-
                     this.groupBy();
                     this.sortYear();
 
@@ -392,7 +391,6 @@
             },
 
             text_split() {
-                this.loading = true;
                 let list = this.text.split("&");
                 for (let i = 0; i < list.length; i++) {
                     // newlist.push(list[i].split(":"));
@@ -437,7 +435,6 @@
                     }
                 }
 
-                this.loading = true;
                 // console.log(this.title_get);
                 // console.log(this.year_get);
                 // console.log(this.author_get);
