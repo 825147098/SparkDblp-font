@@ -8,7 +8,7 @@
             <h3 class="headline">Search &nbsp; For &nbsp; Combined</h3>
         </el-header>
         <el-container>
-            <el-aside width="400px" style="padding: 20px;max-height: 650px; scroll">
+            <el-aside width="400px" style="padding: 20px;max-height: 650px;">
                 <el-tabs type="border-card"  >
                     <el-tab-pane>
                         <span slot="label">搜索规则</span>
@@ -42,7 +42,7 @@
                     </el-tab-pane>
                     <el-tab-pane >
                         <span slot="label">Veneu划分</span>
-                        <div style="font-size: 13px; " v-for="ven in venList" :key="ven">
+                        <div style="font-size: 13px; " v-for="ven in venList" :key="ven" class="divider">
                             {{ven}}({{sortVen[ven].length}})
                         </div>
                     </el-tab-pane>

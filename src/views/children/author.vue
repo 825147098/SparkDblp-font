@@ -32,17 +32,17 @@
                             <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">合作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
-                            <el-button type="text" @click="searchAuthor(aut)" size="small" v-if="aut != authorName">
+                            <el-button type="text" @click="changeName(aut)" size="small" v-if="aut != authorName">
                                 {{aut}}({{sortAuthor[aut].length}})
                             </el-button>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane >
+                    <el-tab-pane>
                         <span slot="label">Veneu划分</span>
-                        <div style="font-size: 13px" v-for="ven in venList" :key="ven">
+                        <div style="font-size: 13px" v-for="ven in venList" :key="ven" class="divider">
                             {{ven}}({{sortVen[ven].length}})
                         </div>
                     </el-tab-pane>
@@ -50,10 +50,10 @@
                     <!--<span slot="label">类型划分</span>-->
                     <!--</el-tab-pane>-->
                     <!--<el-tab-pane :disabled=flag>-->
-                        <!--<span slot="label">年份划分</span>-->
-                        <!--<div style="font-size: 13px" v-for="item in nowYear" :key="item">-->
-                            <!--{{item}}({{sortData[item].length}})-->
-                        <!--</div>-->
+                    <!--<span slot="label">年份划分</span>-->
+                    <!--<div style="font-size: 13px" v-for="item in nowYear" :key="item">-->
+                    <!--{{item}}({{sortData[item].length}})-->
+                    <!--</div>-->
                     <!--</el-tab-pane>-->
                 </el-tabs>
             </el-aside>
@@ -100,110 +100,111 @@
 <script>
 
     import axios from 'axios';
+
     export default {
         name: "author",
 
-        data(){
+        data() {
             return {
-                authorName:'',
+                authorName: '',
                 nowYear: [],
                 articleData: [
-                    {
-                        "_id": {"$oid": "5eedea99310f336f41bf5e86"},
-                        "_key": "journals/corr/abs-1806-03693",
-                        "_mdate": "2018-08-13",
-                        "_publtype": "informal",
-                        "author": [
-                            {
-                                "_VALUE": "Tshilidzi Marwala"
-                            },
-                            {
-                                "_VALUE": "Umar Ruhi"
-                            },
-                            {
-                                "_VALUE": "Rubina Lakhani"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "http://arxiv.org/abs/1806.03693",
-                                "_type": "oa"
-                            }
-                        ],
-                        "journal": "CoRR",
-                        "title": {
-                            "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
-                        },
-                        "url": "db/journals/corr/corr1806.html#abs-1806-03693",
-                        "volume": "abs/1806.03693",
-                        "year": 2018
-                    },
-                    {
-                        "_id": {"$oid": "5eedea99310f336f41bf5e86"},
-                        "_key": "journals/corr/abs-1806-03693",
-                        "_mdate": "2018-08-13",
-                        "_publtype": "informal",
-                        "author": [
-                            {
-                                "_VALUE": "Karim Sultan"
-                            },
-                            {
-                                "_VALUE": "Tshilidzi Marwala"
-                            },
-                            {
-                                "_VALUE": "Rubina Lakhani"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "http://arxiv.org/abs/1806.03693",
-                                "_type": "oa"
-                            }
-                        ],
-                        "journal": "CoRR",
-                        "title": {
-                            "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
-                        },
-                        "url": "db/journals/corr/corr1806.html#abs-1806-03693",
-                        "volume": "abs/1806.03693",
-                        "year": 2018
-                    }, {
-                        "_id": {"$oid": "5eedea9a310f336f41bf7085"},
-                        "_key": "journals/bmcbi/PfeiferLHK07",
-                        "_mdate": "2020-03-15",
-                        "author": [
-                            {
-                                "_VALUE": "Tshilidzi Marwala",
-                            },
-                            {
-                                "_VALUE": "Andreas Leinenbach"
-                            },
-                            {
-                                "_VALUE": "Christian G. Huber",
-                                "_orcid": "0000-0001-8358-1880"
-                            },
-                            {
-                                "_VALUE": "Oliver Kohlbacher",
-                                "_orcid": "0000-0003-1739-4598"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "https://doi.org/10.1186/1471-2105-8-468",
-                                "_type": "oa"
-                            },
-                            {
-                                "_VALUE": "https://www.wikidata.org/entity/Q33308294"
-                            }
-                        ],
-                        "journal": "BMC Bioinform.",
-                        "title": {
-                            "_VALUE": "Statistical learning of peptide retention behavior in chromatographic separations: a new kernel-based approach for computational proteomics."
-                        },
-                        "url": "db/journals/bmcbi/bmcbi8.html#PfeiferLHK07",
-                        "volume": "8",
-                        "year": 2007
-                    },
+                    // {
+                    //     "_id": {"$oid": "5eedea99310f336f41bf5e86"},
+                    //     "_key": "journals/corr/abs-1806-03693",
+                    //     "_mdate": "2018-08-13",
+                    //     "_publtype": "informal",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Tshilidzi Marwala"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Umar Ruhi"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Rubina Lakhani"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "http://arxiv.org/abs/1806.03693",
+                    //             "_type": "oa"
+                    //         }
+                    //     ],
+                    //     "journal": "CoRR",
+                    //     "title": {
+                    //         "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
+                    //     },
+                    //     "url": "db/journals/corr/corr1806.html#abs-1806-03693",
+                    //     "volume": "abs/1806.03693",
+                    //     "year": 2018
+                    // },
+                    // {
+                    //     "_id": {"$oid": "5eedea99310f336f41bf5e86"},
+                    //     "_key": "journals/corr/abs-1806-03693",
+                    //     "_mdate": "2018-08-13",
+                    //     "_publtype": "informal",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Karim Sultan"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Tshilidzi Marwala"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Rubina Lakhani"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "http://arxiv.org/abs/1806.03693",
+                    //             "_type": "oa"
+                    //         }
+                    //     ],
+                    //     "journal": "CoRR",
+                    //     "title": {
+                    //         "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
+                    //     },
+                    //     "url": "db/journals/corr/corr1806.html#abs-1806-03693",
+                    //     "volume": "abs/1806.03693",
+                    //     "year": 2018
+                    // }, {
+                    //     "_id": {"$oid": "5eedea9a310f336f41bf7085"},
+                    //     "_key": "journals/bmcbi/PfeiferLHK07",
+                    //     "_mdate": "2020-03-15",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Tshilidzi Marwala",
+                    //         },
+                    //         {
+                    //             "_VALUE": "Andreas Leinenbach"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Christian G. Huber",
+                    //             "_orcid": "0000-0001-8358-1880"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Oliver Kohlbacher",
+                    //             "_orcid": "0000-0003-1739-4598"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "https://doi.org/10.1186/1471-2105-8-468",
+                    //             "_type": "oa"
+                    //         },
+                    //         {
+                    //             "_VALUE": "https://www.wikidata.org/entity/Q33308294"
+                    //         }
+                    //     ],
+                    //     "journal": "BMC Bioinform.",
+                    //     "title": {
+                    //         "_VALUE": "Statistical learning of peptide retention behavior in chromatographic separations: a new kernel-based approach for computational proteomics."
+                    //     },
+                    //     "url": "db/journals/bmcbi/bmcbi8.html#PfeiferLHK07",
+                    //     "volume": "8",
+                    //     "year": 2007
+                    // },
                 ],
                 sortData: [],
                 sortAuthor: [],
@@ -212,14 +213,20 @@
                 venList: [],
                 sortType: [],
                 typeList: [],
-                name:"",
+                name: "",
                 checkBox: false,
             }
         },
 
-        props:['text'],
+        watch: {
+            authorName: function () {
+                this.getData();
+            }
+        },
 
-        methods:{
+        props: ['text'],
+
+        methods: {
             group_signal(data, key) {
                 return data.reduce(function (prev, cur) {
                     (prev[cur[key]] = prev[cur[key]] || []).push(cur);
@@ -228,10 +235,16 @@
             },
 
             groupBy() {
+                if (this.sortData.length > 0) {
+                    this.sortData.splice(0, this.sortData);
+                }
                 this.sortData = this.group_signal(this.articleData, "year");
             },
 
             sortYear() {
+                if (this.nowYear.length > 0) {
+                    this.nowYear.splice(0, this.nowYear.length);
+                }
                 let yearArr = [];
                 for (var i = 0; i < this.articleData.length; i++) {
                     if (yearArr.indexOf((this.articleData[i].year)) == -1) {
@@ -250,7 +263,15 @@
                         arr.push({name: this.articleData[i].author[j]._VALUE, num: 0});
                     }
                 }
+                if (this.sortAuthor.length > 0) {
+                    this.sortAuthor = null;
+                }
                 this.sortAuthor = this.group_signal(arr, "name");
+
+
+                if (this.autList.length > 0) {
+                    this.autList.splice(0, this.autList.length);
+                }
 
                 for (let i = 0; i < arr.length; i++) {
                     if (this.autList.indexOf((arr[i].name)) == -1) {
@@ -260,6 +281,9 @@
             },
 
             groupByVen() {
+                if (this.sortVen.length > 0) {
+                    this.sortVen.splice(0, this.sortVen.length);
+                }
                 this.sortVen = this.group_signal(this.articleData, "journal");
                 let venArr = [];
                 for (var i = 0; i < this.articleData.length; i++) {
@@ -270,42 +294,46 @@
                 this.venList = venArr;
             },
 
-            searchAuthor(authorName) {
-                console.log(authorName);
-                this.$emit("searchAuthor", authorName);
+            changeName(name) {
+                this.authorName = name;
             },
 
-            cleanAll(){
-                this.sortData.splice(0,this.sortData.length);
-                this.sortAuthor=null;
-                this.autList.splice(0,this.autList.length);
-                this.venList.splice(0,this.venList.length);
-                this.sortVen.splice(0,this.sortVen.length);
-                this.nowYear.splice(0,this.nowYear.length);
+            // searchAuthor(authorName) {
+            //     console.log(authorName);
+            //     this.$emit("searchAuthor", authorName);
+            // },
+
+            cleanAll() {
+                this.sortData = null;
+                this.sortAuthor = null;
+                this.autList.splice(0, this.autList.length);
+                this.venList.splice(0, this.venList.length);
+                this.sortVen.splice(0, this.sortVen.length);
+                this.nowYear.splice(0, this.nowYear.length);
             },
 
-            getData(){
+            getData() {
                 this.$message.info("已经提交查询，稍等片刻")
-                axios.get("http://192.168.3.5:8080/article/accurateAuthor",{
-                    params:{
-                        author:this.text
+                axios.get("http://192.168.3.5:8080/article/accurateAuthor", {
+                    params: {
+                        author: this.authorName
                     }
-                }).then(res =>{
+                }).then(res => {
                     this.$message.success("查询结果已经返回，正在进行分类")
-                    this.cleanAll();
-                    this.articleData =res.data;
-                    console.log(this.articleData);
+                    this.articleData = res.data;
+                    // console.log(this.articleData);
+                    // this.cleanAll();
                     this.groupBy();
                     this.sortYear();
                     this.groupByAuthor();
                     this.groupByVen();
-                }).catch(error =>{
+                }).catch(error => {
                     console.log(error);
                 })
             },
 
             checkbox() {
-                if (this.text == '') {
+                if (this.authorName == '') {
                     this.checkBox = true;
                 } else {
                     this.getData();
@@ -335,14 +363,17 @@
         padding: 4px 24px;
         margin: 2ex 0em;
     }
-    .divider{
+
+    .divider {
         border-bottom: 1px whitesmoke solid;
     }
-    .title{
+
+    .title {
         color: #666666;
         font-weight: 700;
     }
-    .name{
+
+    .name {
         color: #7d848a;
     }
 </style>
