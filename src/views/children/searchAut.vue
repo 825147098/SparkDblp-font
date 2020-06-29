@@ -104,7 +104,7 @@
             },
 
             getData() {
-                axios.get("http://192.168.3.5:8080/authors", {
+                axios.get("http://localhost:8080/authors", {
                     params: {
                         _VALUE: this.text
                     }

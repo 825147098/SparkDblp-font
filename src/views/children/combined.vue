@@ -361,7 +361,7 @@
                 year_get: [],*/
                 console.log(this.author_get)
                 this.$message.info("已经提交查询，稍等片刻")
-                axios.post("http://192.168.3.5:8080/article/search",
+                axios.post("http://localhost:8080/article/search",
                     {
                         title: this.title_get,
                         author: this.author_get,
