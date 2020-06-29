@@ -35,7 +35,7 @@
                     <el-tab-pane >
                         <span slot="label">合作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
-                            <el-button type="text" @click="searchAuthor(aut)" size="small">
+                            <el-button type="text" @click="searchAuthor(aut)" size="small" v-if="aut != authorName">
                                 {{aut}}({{sortAuthor[aut].length}})
                             </el-button>
                         </div>
