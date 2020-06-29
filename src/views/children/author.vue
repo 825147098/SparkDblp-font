@@ -286,7 +286,7 @@
 
             getData(){
                 this.$message.info("已经提交查询，稍等片刻")
-                axios.get("http://192.168.3.5:8080/article/accurateAuthor",{
+                axios.get("http://localhost:8080/article/accurateAuthor",{
                     params:{
                         author:this.text
                     }
