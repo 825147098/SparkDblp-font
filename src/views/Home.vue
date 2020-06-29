@@ -10,29 +10,29 @@
                 <el-menu-item index="Home" @click="redo">
                     <el-link href="localhost:8080/Home">主页</el-link>
                 </el-menu-item>
-                <el-submenu index="browse">
-                    <template slot="title">浏览</template>
-                    <el-menu-item index="browsePerson">作者</el-menu-item>
-                    <el-menu-item index="browseConferences">会议</el-menu-item>
-                    <el-menu-item index="browseJournals">期刊</el-menu-item>
-                    <el-menu-item index="browseSeries">系列</el-menu-item>
-                </el-submenu>
-                <el-submenu index="search">
-                    <template slot="title">搜索</template>
-                    <el-menu-item index="searchDblp">搜索dblp</el-menu-item>
-                    <el-menu-item index="searchByID">搜索ID</el-menu-item>
-                </el-submenu>
-                <el-submenu index="about">
-                    <template slot="title">浏览</template>
-                    <el-menu-item index="aboutFAQ">问题查找</el-menu-item>
-                    <!--//Frequently Asked Questions-->
-                    <el-menu-item index="aboutTeam">团队</el-menu-item>
-                    <!--//项目团队-->
-                    <el-menu-item index="aboutLicense">许可</el-menu-item>
-                    <!--//版权，许可，使用条款，免责声明-->
-                    <el-menu-item index="aboutPrivacy">隐私</el-menu-item>
-                    <!--//数据隐私政策-->
-                </el-submenu>
+                <!--<el-submenu index="browse">-->
+                    <!--<template slot="title">浏览</template>-->
+                    <!--<el-menu-item index="browsePerson">作者</el-menu-item>-->
+                    <!--<el-menu-item index="browseConferences">会议</el-menu-item>-->
+                    <!--<el-menu-item index="browseJournals">期刊</el-menu-item>-->
+                    <!--<el-menu-item index="browseSeries">系列</el-menu-item>-->
+                <!--</el-submenu>-->
+                <!--<el-submenu index="search">-->
+                    <!--<template slot="title">搜索</template>-->
+                    <!--<el-menu-item index="searchDblp">搜索dblp</el-menu-item>-->
+                    <!--<el-menu-item index="searchByID">搜索ID</el-menu-item>-->
+                <!--</el-submenu>-->
+                <!--<el-submenu index="about">-->
+                    <!--<template slot="title">浏览</template>-->
+                    <!--<el-menu-item index="aboutFAQ">问题查找</el-menu-item>-->
+                    <!--&lt;!&ndash;//Frequently Asked Questions&ndash;&gt;-->
+                    <!--<el-menu-item index="aboutTeam">团队</el-menu-item>-->
+                    <!--&lt;!&ndash;//项目团队&ndash;&gt;-->
+                    <!--<el-menu-item index="aboutLicense">许可</el-menu-item>-->
+                    <!--&lt;!&ndash;//版权，许可，使用条款，免责声明&ndash;&gt;-->
+                    <!--<el-menu-item index="aboutPrivacy">隐私</el-menu-item>-->
+                    <!--&lt;!&ndash;//数据隐私政策&ndash;&gt;-->
+                <!--</el-submenu>-->
                 <el-menu-item style="width: 400px; float: right">
                     <el-input size="mini" v-model="searchInput" style="width: 80%; " clearable
                               @keyup.enter.native="searchJson" @keyup.space.native="addSpace"/>
@@ -53,9 +53,9 @@
                             <!--<div>-->
                             <!--<el-radio :label="2" style="color: white">地点搜索</el-radio>-->
                             <!--</div>-->
-                            <div>
-                                <el-radio :label="3" style="color: white">出版物搜索</el-radio>
-                            </div>
+                            <!--<div>-->
+                                <!--<el-radio :label="3" style="color: white">出版物搜索</el-radio>-->
+                            <!--</div>-->
                             <!--<div>-->
                             <!--<el-radio :label="4" style="color: white">全文搜索</el-radio>-->
                             <!--</div>-->
