@@ -1,5 +1,9 @@
 <template>
     <el-container>
+        <el-alert v-if="checkBox" style="width: 400px; margin: auto"
+                  title="输入为空，请重新输入" center closable
+                  show-icon type="warning">
+        </el-alert>
         <el-header height="60px">
             <h3 class="headline">Search &nbsp; For &nbsp; Publications</h3>
         </el-header>
@@ -63,9 +67,14 @@
                         <br>
                         <li v-for="item in sortData[year]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
-                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false">
+                            <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false"
+                                     v-if="item.ee != null">
                                 <el-button circle icon="el-icon-document" size="mini"></el-button>
                             </el-link>
+                            <el-tooltip v-else content="sorry,无链接" placement="bottom-end">
+                                <el-button circle icon="el-icon-document" size="mini" disabled
+                                           style="margin-right: 20px"></el-button>
+                            </el-tooltip>
                             <cite style="display: table-cell; font: inherit; padding: 0 2px; max-width: 800px">
                     <span v-for="authors in item.author" :key="authors._VALUE" class="name">
                             {{authors._VALUE}}
@@ -245,6 +254,7 @@
                 venList: [],
                 sortType: [],
                 typeList: [],
+                checkBox: false,
 
             }
         },
@@ -345,15 +355,19 @@
                     }).catch(error =>{
                         console.log(error);
                     })
+                },
+            checkbox() {
+                if (this.text == '') {
+                    this.checkBox = true;
+                } else {
+                    this.getData();
                 }
+            }
 
 
         },
         mounted() {
-            this.sortYear();
-            this.groupBy();
-            this.groupByAuthor();
-            this.groupByVen();
+            this.checkbox();
             // this.getData();
         }
     }

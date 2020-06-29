@@ -1,11 +1,15 @@
 <template>
     <el-container>
+        <el-alert v-if="checkBox" style="width: 400px; margin: auto"
+                  title="输入为空，请重新输入" center closable
+                  show-icon type="warning">
+        </el-alert>
         <el-header height="60px">
             <h3 class="headline">Search &nbsp; For &nbsp; Combined</h3>
         </el-header>
         <el-container>
-            <el-aside width="400px" style="padding: 20px">
-                <el-tabs type="border-card">
+            <el-aside width="400px" style="padding: 20px;max-height: 650px; scroll">
+                <el-tabs type="border-card"  >
                     <el-tab-pane>
                         <span slot="label">搜索规则</span>
                         <div style="font-size: 13px">
@@ -28,7 +32,7 @@
                             <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane>
+                    <el-tab-pane >
                         <span slot="label">作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
                             <el-button type="text" @click="searchAuthor(aut)" size="small">
@@ -36,7 +40,7 @@
                             </el-button>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane>
+                    <el-tab-pane >
                         <span slot="label">Veneu划分</span>
                         <div style="font-size: 13px; " v-for="ven in venList" :key="ven">
                             {{ven}}({{sortVen[ven].length}})
@@ -53,15 +57,15 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-aside>
-            <el-main  v-loading="loading">
+            <el-main v-loading="loading" style="max-height: 750px; -webkit-scroll-snap-type: none">
                 <el-col>
-                    <ul class="pub-list" v-for="year in nowYear " :key="year.value">
+                    <ul class="pub-list" v-for="year in nowYear " :key="year.value"  >
                         <li>{{year.value}}</li>
                         <br>
                         <li v-for="item in sortData[year.value]" :key="item._VALUE"
                             style="display: inline;padding: 20px; width: 80%;margin: auto">
                             <el-link :href=item.ee[0]._VALUE style="padding-right: 20px" :underline="false"
-                                     v-if="item.ee[0]._VALUE != null">
+                                     v-if="item.ee != null">
                                 <el-button circle icon="el-icon-document" size="mini"></el-button>
                             </el-link>
                             <el-tooltip v-else content="sorry,无链接" placement="bottom-end">
@@ -241,7 +245,8 @@
                 author_get: [],
                 year_get: [],
 
-                loading:false,
+                loading: false,
+                checkBox: false
             }
         },
 
@@ -280,11 +285,11 @@
                         yearArr.push(this.articleData[i].year);
                     }
                 }
-                let yearsArr= [];
+                let yearsArr = [];
                 yearArr = yearArr.sort(function (a, b) {
                     return b - a;
                 });
-                for(let i =0; i<yearArr.length;i++){
+                for (let i = 0; i < yearArr.length; i++) {
                     yearsArr.push({value: yearArr[i], len: this.sortData[yearArr[i]].length});
                 }
                 console.log(this.sortData);
@@ -355,7 +360,7 @@
                 author_get: [],
                 year_get: [],*/
                 console.log(this.author_get)
-                axios.post("http://localhost:8080/article/search",
+                axios.post("http://192.168.3.5:8080/article/search",
                     {
                         title: this.title_get,
                         author: this.author_get,
@@ -366,6 +371,8 @@
                     // this.cleanAll();
                     console.log(res.data);
                     this.articleData = res.data;
+
+
                     this.groupBy();
                     this.sortYear();
 
@@ -388,6 +395,7 @@
             },
 
             text_split() {
+                this.loading = true;
                 let list = this.text.split("&");
                 for (let i = 0; i < list.length; i++) {
                     // newlist.push(list[i].split(":"));
@@ -438,16 +446,19 @@
                 // console.log(this.author_get);
             },
 
+            checkbox() {
+                if (this.text == '') {
+                    this.checkBox = true;
+                } else {
+                    this.text_split();
+                    this.getData();
+                }
+            }
+
 
         },
         mounted() {
-            this.text_split();
-            this.groupBy();
-            this.sortYear();
-            this.groupByAuthor();
-            this.groupByVen();
-            // this.getData();
-
+            this.checkbox();
         }
     }
 </script>

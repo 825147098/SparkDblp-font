@@ -1,5 +1,9 @@
 <template>
     <el-container>
+        <el-alert v-if="checkBox" style="width: 400px; margin: auto"
+                  title="输入为空，请重新输入" center closable
+                  show-icon type="warning">
+        </el-alert>
         <el-header height="60px">
             <h3 class="headline">Search &nbsp; For &nbsp; Combined</h3>
         </el-header>
@@ -55,6 +59,7 @@
                     },
                 ],
                 lucklyList: [],
+                checkBox: false,
             }
         },
 
@@ -110,6 +115,15 @@
                 }).catch(error => {
                     console.log(error);
                 })
+            },
+
+            checkbox() {
+                if (this.text == '') {
+                    this.checkBox = true;
+                } else {
+                    this.getData();
+                    this.more();
+                }
             }
 
         },
@@ -122,9 +136,7 @@
         },
 
         mounted() {
-            this.getData();
-            this.more();
-            console.log(this.authList);
+            this.checkbox();
         }
     }
 </script>
