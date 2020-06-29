@@ -25,7 +25,7 @@
                 </li>
             </ul>
             <ul class="pub-list">
-                <p>所有{{authList.length}}条匹配</p>
+                <p v-if="authList.length > 0">所有{{authList.length}}条匹配</p>
                 <li v-for="item in authList" :key="item._VALUE">
                     <el-button type="text" @click="searchAuthor(item._VALUE)" size="mini">
                         {{item._VALUE}}
@@ -51,13 +51,7 @@
         data() {
             return {
                 authorName: "",
-                authList: [
-                    {
-                        _VALUE: "",
-                        _orcid: "",
-                        _aux: "",
-                    },
-                ],
+                authList: [],
                 lucklyList: [],
                 checkBox: false,
             }
@@ -104,7 +98,8 @@
             },
 
             getData() {
-                axios.get("http://localhost:8080/authors", {
+                this.$message.info("已经提交查询，稍等片刻")
+                axios.get("http://192.168.3.5:8080/authors", {
                     params: {
                         _VALUE: this.text
                     }

@@ -8,8 +8,8 @@
             <h3 class="headline">Search &nbsp; For &nbsp; Combined</h3>
         </el-header>
         <el-container>
-            <el-aside width="400px" style="padding: 20px;max-height: 650px; scroll">
-                <el-tabs type="border-card">
+            <el-aside width="400px" style="padding: 20px;max-height: 650px;">
+                <el-tabs type="border-card"  >
                     <el-tab-pane>
                         <span slot="label">搜索规则</span>
                         <div style="font-size: 13px">
@@ -32,7 +32,7 @@
                             <span>e.g.,title:distribut&year:2010..2020&author:tom,mike</span>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane>
+                    <el-tab-pane >
                         <span slot="label">作者划分</span>
                         <div style="font-size: 13px" v-for="aut in autList" :key="aut" class="divider">
                             <el-button type="text" @click="searchAuthor(aut)" size="small">
@@ -40,9 +40,9 @@
                             </el-button>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane>
+                    <el-tab-pane >
                         <span slot="label">Veneu划分</span>
-                        <div style="font-size: 13px; " v-for="ven in venList" :key="ven">
+                        <div style="font-size: 13px; " v-for="ven in venList" :key="ven" class="divider">
                             {{ven}}({{sortVen[ven].length}})
                         </div>
                     </el-tab-pane>
@@ -361,7 +361,7 @@
                 year_get: [],*/
                 console.log(this.author_get)
                 this.$message.info("已经提交查询，稍等片刻")
-                axios.post("http://localhost:8080/article/search",
+                axios.post("http://192.168.3.5:8080/article/search",
                     {
                         title: this.title_get,
                         author: this.author_get,

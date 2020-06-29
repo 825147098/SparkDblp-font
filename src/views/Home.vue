@@ -97,7 +97,7 @@
                         fit="scale-down" style="width: 1000px;height: 660px"></el-image>
             </el-main>
             <Combined v-if="conbined" :text="propInput" @searchAuthor="searchAuthor"></Combined>
-            <author v-if="author" :text="authorName" @searchAuthor="searchAuthor"></author>
+            <author v-if="author" :text="authorName" ></author>
             <publiaction v-if="publish" :text="propInput" @searchAuthor="searchAuthor"></publiaction>
             <searchAut @searchAuthor="searchAuthor" v-if="searchAut" :text="propInput"></searchAut>
             <!--<router-view></router-view>-->
@@ -153,7 +153,7 @@
                 this.publish = false;
                 this.conbined = false;
                 this.searchAut = false;
-                console.log(authorName);
+                // console.log(authorName);
             },
 
             addSpace() {
