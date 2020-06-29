@@ -285,11 +285,13 @@
             },
 
             getData(){
+                this.$message.info("已经提交查询，稍等片刻")
                 axios.get("",{
                     params:{
                         msg:this.text
                     }
                 }).then(res =>{
+                    this.$message.success("查询结果已经返回，正在进行分类")
                     this.cleanAll();
                     this.articleData =res.data;
                     this.sortYear();

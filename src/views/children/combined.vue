@@ -360,7 +360,8 @@
                 author_get: [],
                 year_get: [],*/
                 console.log(this.author_get)
-                axios.post("http://192.168.3.5:8080/article/search",
+                this.$message.info("已经提交查询，稍等片刻")
+                axios.post("http://localhost:8080/article/search",
                     {
                         title: this.title_get,
                         author: this.author_get,
@@ -369,6 +370,7 @@
                     },
                 ).then(res => {
                     // this.cleanAll();
+                    this.$message.success("查询结果已经返回，正在进行分类")
                     console.log(res.data);
                     this.articleData = res.data;
 
@@ -379,14 +381,9 @@
                     this.groupByAuthor();
                     // this.groupByType();
                     this.groupByVen();
+                    this.loading = false;
                 })
-                /*  axios.get("", {
-                      params: {
-                          label: 0,
 
-                      }
-                  })*/
-                this.loading = false;
             },
 
             searchAuthor(authorName) {
