@@ -285,17 +285,19 @@
             },
 
             getData(){
+                this.$message.info("已经提交查询，稍等片刻")
                 axios.get("http://192.168.3.5:8080/article/accurateAuthor",{
                     params:{
                         author:this.text
                     }
                 }).then(res =>{
+                    this.$message.success("查询结果已经返回，正在进行分类")
                     this.cleanAll();
                     this.articleData =res.data;
-                    this.sortYear();
+                    console.log(this.articleData);
                     this.groupBy();
+                    this.sortYear();
                     this.groupByAuthor();
-                    //this.groupByType();
                     this.groupByVen();
                 }).catch(error =>{
                     console.log(error);
