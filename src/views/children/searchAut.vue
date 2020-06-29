@@ -99,7 +99,7 @@
 
             getData() {
                 this.$message.info("已经提交查询，稍等片刻")
-                axios.get("http://192.168.3.5:8080/authors", {
+                axios.get("http://localhost:8080/authors", {
                     params: {
                         _VALUE: this.text
                     }
