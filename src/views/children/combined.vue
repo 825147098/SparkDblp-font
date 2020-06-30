@@ -106,132 +106,132 @@
             return {
                 nowYear: [],
                 articleData: [
-                    {
-                        "_id": {"$oid": "5eedea99310f336f41bf5e86"},
-                        "_key": "journals/corr/abs-1806-03693",
-                        "_mdate": "2018-08-13",
-                        "_publtype": "informal",
-                        "author": [
-                            {
-                                "_VALUE": "Karim Sultan"
-                            },
-                            {
-                                "_VALUE": "Umar Ruhi"
-                            },
-                            {
-                                "_VALUE": "Rubina Lakhani"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                // "_VALUE": "",
-                                "_type": "oa"
-                            }
-                        ],
-                        "journal": "CoRR",
-                        "title": "Conceptualizing Blockchains: Characteristics & Applications.",
-                        "url": "db/journals/corr/corr1806.html#abs-1806-03693",
-                        "volume": "abs/1806.03693",
-                        "year": 2018
-                    },
-                    {
-                        "_id": {"$oid": "5eedea99310f336f41bf5e87"},
-                        "_key": "journals/corr/RossiFF13",
-                        "_mdate": "2018-08-13",
-                        "_publtype": "informal",
-                        "author": [
-                            {
-                                "_VALUE": "Wilbert Samuel Rossi"
-                            },
-                            {
-                                "_VALUE": "Paolo Frasca"
-                            },
-                            {
-                                "_VALUE": "Fabio Fagnani"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "http://arxiv.org/abs/1309.2172",
-                                "_type": "oa"
-                            }
-                        ],
-                        "journal": "CoRR",
-                        "title": {
-                            "_VALUE": "Effective resistance of toroidal graphs; some sharper results and applications."
-                        },
-                        "url": "db/journals/corr/corr1309.html#RossiFF13",
-                        "volume": "abs/1309.2172",
-                        "year": 2013
-                    },
-                    {
-                        "_id": {"$oid": "5eedea99310f336f41bf5e86"},
-                        "_key": "journals/corr/abs-1806-03693",
-                        "_mdate": "2018-08-13",
-                        "_publtype": "informal",
-                        "author": [
-                            {
-                                "_VALUE": "Karim Sultan"
-                            },
-                            {
-                                "_VALUE": "Umar Ruhi"
-                            },
-                            {
-                                "_VALUE": "Rubina Lakhani"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "http://arxiv.org/abs/1806.03693",
-                                "_type": "oa"
-                            }
-                        ],
-                        "journal": "CoRR",
-                        "title": {
-                            "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
-                        },
-                        "url": "db/journals/corr/corr1806.html#abs-1806-03693",
-                        "volume": "abs/1806.03693",
-                        "year": 2018
-                    },
-                    {
-                        "_id": {"$oid": "5eedea9a310f336f41bf7085"},
-                        "_key": "journals/bmcbi/PfeiferLHK07",
-                        "_mdate": "2020-03-15",
-                        "author": [
-                            {
-                                "_VALUE": "Nico Pfeifer",
-                                "_orcid": "0000-0002-4647-8566"
-                            },
-                            {
-                                "_VALUE": "Andreas Leinenbach"
-                            },
-                            {
-                                "_VALUE": "Christian G. Huber",
-                                "_orcid": "0000-0001-8358-1880"
-                            },
-                            {
-                                "_VALUE": "Oliver Kohlbacher",
-                                "_orcid": "0000-0003-1739-4598"
-                            }
-                        ],
-                        "ee": [
-                            {
-                                "_VALUE": "https://doi.org/10.1186/1471-2105-8-468",
-                                "_type": "oa"
-                            },
-                            {
-                                "_VALUE": "https://www.wikidata.org/entity/Q33308294"
-                            }
-                        ],
-                        "journal": "BMC Bioinform.",
-                        "title": {
-                            "_VALUE": "Statistical learning of peptide retention behavior in chromatographic separations: a new kernel-based approach for computational proteomics."
-                        },
-                        "url": "db/journals/bmcbi/bmcbi8.html#PfeiferLHK07",
-                        "volume": "8",
-                        "year": 2007
-                    },
+                    // {
+                    //     "_id": {"$oid": "5eedea99310f336f41bf5e86"},
+                    //     "_key": "journals/corr/abs-1806-03693",
+                    //     "_mdate": "2018-08-13",
+                    //     "_publtype": "informal",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Karim Sultan"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Umar Ruhi"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Rubina Lakhani"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             // "_VALUE": "",
+                    //             "_type": "oa"
+                    //         }
+                    //     ],
+                    //     "journal": "CoRR",
+                    //     "title": "Conceptualizing Blockchains: Characteristics & Applications.",
+                    //     "url": "db/journals/corr/corr1806.html#abs-1806-03693",
+                    //     "volume": "abs/1806.03693",
+                    //     "year": 2018
+                    // },
+                    // {
+                    //     "_id": {"$oid": "5eedea99310f336f41bf5e87"},
+                    //     "_key": "journals/corr/RossiFF13",
+                    //     "_mdate": "2018-08-13",
+                    //     "_publtype": "informal",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Wilbert Samuel Rossi"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Paolo Frasca"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Fabio Fagnani"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "http://arxiv.org/abs/1309.2172",
+                    //             "_type": "oa"
+                    //         }
+                    //     ],
+                    //     "journal": "CoRR",
+                    //     "title": {
+                    //         "_VALUE": "Effective resistance of toroidal graphs; some sharper results and applications."
+                    //     },
+                    //     "url": "db/journals/corr/corr1309.html#RossiFF13",
+                    //     "volume": "abs/1309.2172",
+                    //     "year": 2013
+                    // },
+                    // {
+                    //     "_id": {"$oid": "5eedea99310f336f41bf5e86"},
+                    //     "_key": "journals/corr/abs-1806-03693",
+                    //     "_mdate": "2018-08-13",
+                    //     "_publtype": "informal",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Karim Sultan"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Umar Ruhi"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Rubina Lakhani"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "http://arxiv.org/abs/1806.03693",
+                    //             "_type": "oa"
+                    //         }
+                    //     ],
+                    //     "journal": "CoRR",
+                    //     "title": {
+                    //         "_VALUE": "Conceptualizing Blockchains: Characteristics & Applications."
+                    //     },
+                    //     "url": "db/journals/corr/corr1806.html#abs-1806-03693",
+                    //     "volume": "abs/1806.03693",
+                    //     "year": 2018
+                    // },
+                    // {
+                    //     "_id": {"$oid": "5eedea9a310f336f41bf7085"},
+                    //     "_key": "journals/bmcbi/PfeiferLHK07",
+                    //     "_mdate": "2020-03-15",
+                    //     "author": [
+                    //         {
+                    //             "_VALUE": "Nico Pfeifer",
+                    //             "_orcid": "0000-0002-4647-8566"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Andreas Leinenbach"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Christian G. Huber",
+                    //             "_orcid": "0000-0001-8358-1880"
+                    //         },
+                    //         {
+                    //             "_VALUE": "Oliver Kohlbacher",
+                    //             "_orcid": "0000-0003-1739-4598"
+                    //         }
+                    //     ],
+                    //     "ee": [
+                    //         {
+                    //             "_VALUE": "https://doi.org/10.1186/1471-2105-8-468",
+                    //             "_type": "oa"
+                    //         },
+                    //         {
+                    //             "_VALUE": "https://www.wikidata.org/entity/Q33308294"
+                    //         }
+                    //     ],
+                    //     "journal": "BMC Bioinform.",
+                    //     "title": {
+                    //         "_VALUE": "Statistical learning of peptide retention behavior in chromatographic separations: a new kernel-based approach for computational proteomics."
+                    //     },
+                    //     "url": "db/journals/bmcbi/bmcbi8.html#PfeiferLHK07",
+                    //     "volume": "8",
+                    //     "year": 2007
+                    // },
                 ],
                 sortData: [],
                 sortAuthor: [],
@@ -380,7 +380,6 @@
                     this.groupByAuthor();
                     // this.groupByType();
                     this.groupByVen();
-                    this.loading = false;
                 }).catch(err => {
                     console.log(err);
                     this.$message.error(err);
